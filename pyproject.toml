@@ -1,0 +1,12 @@
+[project]
+name = "scrapper-test"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "selenium>=4.41.0",
+    "selenium-stealth>=1.0.6",
+    "types-selenium>=3.141.9",
+    "yarl>=1.23.0",
+]

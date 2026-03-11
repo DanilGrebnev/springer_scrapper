@@ -1,0 +1,9 @@
+{
+  "include": ["src"],
+  "exclude": [".venv", "__pycache__"],
+  "pythonVersion": "3.14",
+  "typeCheckingMode": "basic",
+  "reportMissingImports": true,
+  "reportMissingTypeStubs": false,
+  "reportUnknownMemberType": false
+}
