@@ -49,6 +49,7 @@ def create_article_card(card_container: WebElement) -> ArticleCard:
         "type": '' 
     }
     
+
     meta_info_result = get_meta_info(card_container)
 
 
