@@ -1,0 +1,130 @@
+{
+  "1": [
+    {
+      "is_access": true,
+      "title": "Characteristics of Bimetallic Castings with Varying Thickness of Liquid High Carbon Grey Cast Iron and Solid High Chromium Stainless Steel 304 Produced by Green Sand Mold Casting",
+      "link": "https://link.springer.com/article/10.1007/s40962-025-01832-z",
+      "description": "This study investigates the behaviour of high-chromium stainless steel 304/high-carbon grey cast iron (HCSS 304/HCGCI) bimetallic metal matrix...",
+      "type": "Article"
+    },
+    {
+      "is_access": true,
+      "title": "Mechanical Characterization of Multi-material Castings Produced by an Injector Casting-Based Process",
+      "link": "https://link.springer.com/article/10.1007/s40962-025-01809-y",
+      "description": "In the multi-material injector casting process, two different melts are cast consecutively into a mold through a ceramic injector. The current work...",
+      "type": "Article"
+    },
+    {
+      "is_access": true,
+      "title": "A Case Study on the Casting Skin Phenomena in Compacted Graphite Iron Cast Components",
+      "link": "https://link.springer.com/article/10.1007/s40962-025-01568-w",
+      "description": "In sand casting, the surface microstructure often differs from the bulk microstructure due to mold–metal interactions. In nodular and compacted...",
+      "type": "Article"
+    },
+    {
+      "is_access": true,
+      "title": "Microstructure, mechanical parameters, and corrosion resistance of austenitic ductile iron castings",
+      "link": "https://link.springer.com/article/10.1007/s43452-025-01331-2",
+      "description": "Austenitic ductile iron, also known as Ni-resist cast iron, belongs to the cast iron group, which is characterized by a high-nickel content ranging...",
+      "type": "Article"
+    },
+    {
+      "is_access": true,
+      "title": "Enhancing Manganese Steel Castings: The Role of Magnesium, Calcium, and Surface-Active Elements in Reinforcing Ceramic-Metal Composite Structures",
+      "link": "https://link.springer.com/article/10.1007/s40962-025-01640-5",
+      "description": "The enhancement of manganese steel castings through the incorporation of magnesium, calcium, and surface-active elements has been investigated with a...",
+      "type": "Article"
+    },
+    {
+      "is_access": true,
+      "title": "Chemical composition design in cast aluminum alloys for enhanced microstructure and functionality",
+      "link": "https://link.springer.com/article/10.1007/s44371-025-00331-8",
+      "description": "Aluminium alloys are designed by adding specific alloying elements such as manganese, silicon, magnesium, to the base metal to achieve desired...",
+      "type": "Article"
+    },
+    {
+      "is_access": true,
+      "title": "Production of Efficient Nodular Cast Iron Gears—Considering the Fatigue Strength and Rolling Contact Fatigue Strength Based on the Local Microstructure",
+      "link": "https://link.springer.com/article/10.1007/s40962-024-01525-z",
+      "description": "Large gears with diameters of several meters, used in heavy engineering and mining industries, are subjected to high fatigue and rolling contact...",
+      "type": "Article"
+    },
+    {
+      "is_access": true,
+      "title": "Effect of Local Solidification Conditions on the Microstructure and Mechanical Properties of AlSi7Cu1.3Mg0.6 Alloy: Comparison Between Sand-Cast HIP-Treated Cylinder Head and Separately Cast Specimens",
+      "link": "https://link.springer.com/article/10.1007/s40962-025-01799-x",
+      "description": "The design of complex-shaped aluminum castings, such as cylinder heads, is commonly based on mechanical data obtained from separately cast...",
+      "type": "Article"
+    },
+    {
+      "is_access": true,
+      "title": "Effect of Solidification Time and Carbon Content on Microstructure, Thermal Conductivity and UTS of Lamellar Graphite Iron",
+      "link": "https://link.springer.com/article/10.1007/s40962-025-01600-z",
+      "description": "Lamellar graphite iron (LGI) is used in the automotive industry as well as in a variety of other industries for geometrically complex components with...",
+      "type": "Article"
+    },
+    {
+      "is_access": true,
+      "title": "Objective Description of Graphite Morphology in Ductile Cast Iron by Numerical Geometric Parameters",
+      "link": "https://link.springer.com/article/10.1007/s40962-025-01706-4",
+      "description": "As an innovative evolution of conventional cast iron, solid solution-strengthened ductile iron (SSDI) with its excellent ductility and strength...",
+      "type": "Article"
+    },
+    {
+      "is_access": true,
+      "title": "Microstructure, phase transformation temperatures and long-term stability of ex-situ Alloy 718 + TiB2 metal-ceramic nanocomposites as a repair coatings for aerospace applications",
+      "link": "https://link.springer.com/article/10.1038/s41598-025-29049-4",
+      "description": "In this study, Ni-based superalloy Alloy 718 + xTiB2(x = 1.25; 2.5; 3.75; 5.0%) composites were fabricated by suction casting to improve hardness,...",
+      "type": "Article"
+    },
+    {
+      "is_access": true,
+      "title": "Simulation and experiment research on heat treatment of micro and nano BN particles modified casting aluminum copper alloys",
+      "link": "https://link.springer.com/article/10.1038/s41598-025-05162-2",
+      "description": "The heat treatment process is a key technology to improve the performance of cast aluminum-copper alloys with micro-nano boron nitride (BN)...",
+      "type": "Article"
+    },
+    {
+      "is_access": true,
+      "title": "Enhancement of Carbon Alloy Steel Hardness and Wear Resistance by Vibration and Modification",
+      "link": "https://link.springer.com/article/10.1007/s13632-025-01258-3",
+      "description": "Cast alloy steel grade 35KhGSL is widely utilized in various industries. Sometimes, wear resistance and hardness become highly essential for...",
+      "type": "Article"
+    },
+    {
+      "is_access": true,
+      "title": "Effect of compositions and hardness on wheel-rail contact analysis and wear behavior of wheel materials using finite element method: a case study of Addis Ababa light rail transit",
+      "link": "https://link.springer.com/article/10.1007/s43939-025-00243-5",
+      "description": "Contact stress arises in the wheel-rail because of the load imposed on the wheel. This stress on wheel leads to wear, distortion, and damage,...",
+      "type": "Article"
+    },
+    {
+      "is_access": true,
+      "title": "A process-synergistic active learning framework for high-strength Al-Si alloys design",
+      "link": "https://link.springer.com/article/10.1038/s41524-025-01721-3",
+      "description": "High-strength Al-Si alloys are important lightweight materials, but their optimal design is hindered by scarce-imbalance data, and complex...",
+      "type": "Article"
+    },
+    {
+      "is_access": true,
+      "title": "Chemical analysis of the 5th and 12th century metal doors in the Lateran, Rome",
+      "link": "https://link.springer.com/article/10.1007/s12520-025-02165-y",
+      "description": "For the first time, the three bronze doors of the Lateran Baptistery and Cloister of the Archbasilica of St John Lateran in Rome have been studied to...",
+      "type": "Article"
+    },
+    {
+      "is_access": true,
+      "title": "Fabrication, mechanical properties, and microstructural analysis of Al/SiC-bagasse ash hybrid composites",
+      "link": "https://link.springer.com/article/10.1007/s42452-025-08031-9",
+      "description": "The growing need for lightweight and high-strength materials in automotive, aerospace, and structural applications has encouraged research on hybrid...",
+      "type": "Article"
+    },
+    {
+      "is_access": true,
+      "title": "Sustainable and cost-efficient machining of ZE41 magnesium alloy through optimization with Intuitionistic Fuzzy TOPSIS",
+      "link": "https://link.springer.com/article/10.1038/s41598-025-19854-2",
+      "description": "This study addresses the pressing need to reduce production costs and energy consumption in machining lightweight magnesium alloys, a challenge that...",
+      "type": "Article"
+    }
+  ]
+}
