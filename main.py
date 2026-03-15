@@ -1,5 +1,4 @@
 from src.springer.scrapping_service import ScrappingService
-from src.driver import driver
 from src.db.db_service import db_service
 
 def main():
