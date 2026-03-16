@@ -1,4 +1,4 @@
-from typing import TypedDict
+from typing import TypedDict, Callable, Optional
 from src.springer.utils.create_url import create_url
 from src.driver import driver
 from selenium.webdriver.common.by import By
@@ -6,6 +6,10 @@ from selenium.webdriver.remote.webdriver import WebElement
 import time
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+
+class PageInfo(TypedDict):
+    current: int
+    total: int
 
 ArticleCard = TypedDict("ArticleCard", 
     {
@@ -149,32 +153,41 @@ class ScrappingService:
 
     def set_search_params(self, search_params):
         self.__search_params = search_params
+    
+    def start(self, progress_parsing_page_cb: Optional[Callable[[PageInfo], None]] = None):
+        try:
+            '''
+            Args:
+                progress_parsing_page_cb: Опциональный callback, вызываемый после обработки каждой страницы.
+                               Принимает PageInfo с полями:
+                               - current: номер текущей страницы в списке
+                               - total: общее количество страниц
+            '''
+            # Открываем страницу браузера и сразу оказываемся на первой странице
+            self.__get(self.__search_params)
+            # Принимаем окно с куками
+            self.__accept_cookie_dialog()
+            # Получаем количество страниц
+            pages_range = self.__get_pages_range()
 
-    def start(self):
-        print(f"search: {self.__create_search_url(self.__search_params)}")
-        # Открываем страницу браузера и сразу оказываемся на первой странице
-        self.__get(self.__search_params)
-        # Принимаем окно с куками
-        self.__accept_cookie_dialog()
-        # Получаем количество страниц
-        pages_range = self.__get_pages_range()
+            # Если страниц нет - выходим, т.к. результатов не найдено
+            if not pages_range:
+                return 
 
-        # Если страниц нет - выходим, т.к. результатов не найдено
-        if not pages_range:
-            return 
+            article_dict = {}
 
-        article_dict = {}
+            for page in pages_range:
+                self.__get({**self.__search_params, "page":page})
 
-        for page in pages_range:
-            time.sleep(2)
-            self.__get({**self.__search_params, "page":page})
-            # Скроллим страницу вниз
-            self.__scroll_slowly()
+                atrticles_on_current_page = self.__collect_articles()
 
-            atrticles_on_current_page = self.__collect_articles()
+                # Записываем в словарь с индексацией по странице 
+                article_dict[page] = atrticles_on_current_page
 
-            # Записываем в словарь с индексацией по странице 
-            article_dict[page] = atrticles_on_current_page
+                if progress_parsing_page_cb:
+                    progress_parsing_page_cb({"current":page, "total":len(pages_range)})
 
-
-        return article_dict
+            return article_dict
+        except Exception as ex:
+            print(f'Parsing error: {ex}') 
+            driver.quit()
