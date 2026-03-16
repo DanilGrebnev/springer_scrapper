@@ -177,6 +177,7 @@ class ScrappingService:
             article_dict = {}
 
             for page in pages_range:
+                time.sleep(2)
                 self.__get({**self.__search_params, "page":page})
 
                 atrticles_on_current_page = self.__collect_articles()
@@ -191,3 +192,4 @@ class ScrappingService:
         except Exception as ex:
             print(f'Parsing error: {ex}') 
             driver.quit()
+            return
