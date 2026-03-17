@@ -1,4 +1,4 @@
-from selenium.webdriver import Chrome
+from selenium import webdriver
 from selenium.webdriver.chrome.options import Options  
 from selenium_stealth import stealth  
 
@@ -8,7 +8,7 @@ options.add_argument("start-maximized")
 options.add_experimental_option("excludeSwitches", ["enable-automation"])
 options.add_experimental_option('useAutomationExtension', False)
 
-driver = Chrome(options=options)  # pyright: ignore
+driver = webdriver.Chrome(options=options)  # pyright: ignore
 
 stealth(driver,
     languages=["en-US", "en"],
@@ -16,5 +16,6 @@ stealth(driver,
     platform="Win32",
     webgl_vendor="Intel Inc.",
     renderer="Intel Iris OpenGL Engine",
-    fix_hairline=True
+    fix_hairline=True,
+    page_load_strategy='eager'
 )

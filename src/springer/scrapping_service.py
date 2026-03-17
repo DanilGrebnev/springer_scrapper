@@ -145,24 +145,24 @@ class ScrappingService:
         card_containers_list = driver.find_elements(By.CLASS_NAME, 'app-card-open__main')
         # Статьи с текущей страницы
         atrticles_on_current_page = []
+        
         # Собираем каждую статью на текущей странице
         for card_container in card_containers_list:
             atrticles_on_current_page.append(self.__get_articles(card_container))
-        
         return atrticles_on_current_page
 
     def set_search_params(self, search_params):
         self.__search_params = search_params
     
     def start(self, progress_parsing_page_cb: Optional[Callable[[PageInfo], None]] = None):
-        try:
-            '''
+        '''
             Args:
                 progress_parsing_page_cb: Опциональный callback, вызываемый после обработки каждой страницы.
                                Принимает PageInfo с полями:
                                - current: номер текущей страницы в списке
                                - total: общее количество страниц
-            '''
+        '''
+        try:
             # Открываем страницу браузера и сразу оказываемся на первой странице
             self.__get(self.__search_params)
             # Принимаем окно с куками
@@ -177,18 +177,24 @@ class ScrappingService:
             article_dict = {}
 
             for page in pages_range:
-                time.sleep(2)
-                self.__get({**self.__search_params, "page":page})
+                try:
+                    time.sleep(2)
+                    self.__get({**self.__search_params, "page":page})
 
-                atrticles_on_current_page = self.__collect_articles()
+                    atrticles_on_current_page = self.__collect_articles()
 
-                # Записываем в словарь с индексацией по странице 
-                article_dict[page] = atrticles_on_current_page
+                    # Записываем в словарь с индексацией по странице 
+                    article_dict[page] = atrticles_on_current_page
 
-                if progress_parsing_page_cb:
-                    progress_parsing_page_cb({"current":page, "total":len(pages_range)})
+                    if progress_parsing_page_cb:
+                        progress_parsing_page_cb({"current":page, "total":len(pages_range)})
 
-            return article_dict
+                    return article_dict
+                except Exception as ex:
+                    print(f"Ошибка в сборе статей")
+                    print(ex)
+                    continue
+                
         except Exception as ex:
             print(f'Parsing error: {ex}') 
             driver.quit()
