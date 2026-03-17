@@ -23,6 +23,7 @@ ArticleCard = TypedDict("ArticleCard",
 class ScrappingService:
     def __init__(self, search_params):
         self.__search_params = search_params
+        
 
     __search_params = {
         "query":"",
@@ -45,7 +46,9 @@ class ScrappingService:
 
             for list_pagination_item in webelements_list:
                 pages_amount.append(int(list_pagination_item.get_attribute('data-page')))
-        except:
+        except Exception as ex:
+            print('Ошибка получения элементов пагинации')
+            print(ex)
             return []
 
         ''' 
@@ -60,7 +63,13 @@ class ScrappingService:
 
     def __get(self, search_params):
         '''driver.get with __create_search_url function'''
-        driver.get(self.__create_search_url(search_params))
+        driver.set_page_load_timeout(5)
+        try:
+            driver.get(self.__create_search_url(search_params))
+            time.sleep(2)
+            self.__accept_cookie_dialog()
+        except:
+            driver.execute_script("window.stop();")
 
     def __get_articles(self, card_container: WebElement) -> ArticleCard:
         # Тип и доступ к статье
@@ -116,7 +125,7 @@ class ScrappingService:
     def __accept_cookie_dialog(self):
         """принятие кук"""
         try:
-            cookie_btn = WebDriverWait(driver, 7).until(EC.element_to_be_clickable((By.CLASS_NAME, 'cc-banner__button-accept')))
+            cookie_btn = WebDriverWait(driver, 4).until(EC.element_to_be_clickable((By.CLASS_NAME, 'cc-banner__button-accept')))
             cookie_btn.click()
             return True
         except:
@@ -165,11 +174,8 @@ class ScrappingService:
         try:
             # Открываем страницу браузера и сразу оказываемся на первой странице
             self.__get(self.__search_params)
-            # Принимаем окно с куками
-            self.__accept_cookie_dialog()
             # Получаем количество страниц
             pages_range = self.__get_pages_range()
-
             # Если страниц нет - выходим, т.к. результатов не найдено
             if not pages_range:
                 return 
@@ -188,13 +194,12 @@ class ScrappingService:
 
                     if progress_parsing_page_cb:
                         progress_parsing_page_cb({"current":page, "total":len(pages_range)})
-
-                    return article_dict
                 except Exception as ex:
                     print(f"Ошибка в сборе статей")
                     print(ex)
                     continue
-                
+            
+            return article_dict
         except Exception as ex:
             print(f'Parsing error: {ex}') 
             driver.quit()

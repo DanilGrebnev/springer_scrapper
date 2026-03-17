@@ -18,7 +18,7 @@ def main():
         print(f"[+] {page['current']} / {page['total']}")
 
     articles = scrapping_service.start(progress_parsing_page_cb=print_parsed_page)
-    # db_service.write(articles)
+    db_service.write(articles)
                      
 if __name__ == "__main__":
     main()
