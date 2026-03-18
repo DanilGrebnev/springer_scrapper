@@ -28,7 +28,7 @@ class Driver:
     def create(self):
         options = Options()
         options.add_argument("start-maximized")
-        # self.options.add_argument("--headless")
+        options.set_capability('pageLoadStrategy', 'eager')
         options.add_experimental_option("excludeSwitches", ["enable-automation"])
         options.add_experimental_option('useAutomationExtension', False)
         
