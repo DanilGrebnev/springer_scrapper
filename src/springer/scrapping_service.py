@@ -24,7 +24,6 @@ class ScrappingService:
     def __init__(self, search_params):
         self.__search_params = search_params
         
-
     __search_params = {
         "query":"",
         "page":"",
@@ -34,11 +33,28 @@ class ScrappingService:
         "openAccess": "false"
     }
 
-    def __create_search_url(self, search_params: dict):
+    def _get(self, search_params):
+        '''driver.get with __create_search_url function'''
+        driver.set_page_load_timeout(5)
+        try:
+            driver.get(self._create_search_url(search_params))
+            time.sleep(1)
+            self._accept_cookie_dialog()
+        except:
+            driver.execute_script("window.stop();")
+    
+    def _create_search_url(self, search_params: dict):
         return create_url.search_page(**search_params)
     
-    def __get_pages_range(self):
+    def _get_pages_range(self):
         '''получение количества страниц'''
+        # Открываем страницу с запросом
+        try:
+            self._get(self.__search_params)
+        except Exception as ex:
+            print('Ошибка открытия страницы для подсчёта элементов пагинации')
+            print(ex)
+        
         pages_amount = []
 
         try:
@@ -61,17 +77,7 @@ class ScrappingService:
         else:
             return pages_amount
 
-    def __get(self, search_params):
-        '''driver.get with __create_search_url function'''
-        driver.set_page_load_timeout(5)
-        try:
-            driver.get(self.__create_search_url(search_params))
-            time.sleep(2)
-            self.__accept_cookie_dialog()
-        except:
-            driver.execute_script("window.stop();")
-
-    def __get_articles(self, card_container: WebElement) -> ArticleCard:
+    def _get_articles(self, card_container: WebElement) -> ArticleCard:
         # Тип и доступ к статье
         MetaInfo = TypedDict("MetaInfo", 
             {
@@ -122,7 +128,7 @@ class ScrappingService:
 
         return card_meta
     
-    def __accept_cookie_dialog(self):
+    def _accept_cookie_dialog(self):
         """принятие кук"""
         try:
             cookie_btn = WebDriverWait(driver, 4).until(EC.element_to_be_clickable((By.CLASS_NAME, 'cc-banner__button-accept')))
@@ -131,25 +137,7 @@ class ScrappingService:
         except:
             return False
 
-    def __scroll_slowly(self, scroll_pause=1):
-        """Медленно скроллит страницу, имитируя поведение пользователя"""
-        # Получаем высоту страницы
-        last_height = driver.execute_script("return document.body.scrollHeight")
-
-        while True:
-            # Скроллим вниз
-            driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-
-            # Ждем загрузки
-            time.sleep(scroll_pause)
-
-            # Проверяем, загрузились ли новые элементы
-            new_height = driver.execute_script("return document.body.scrollHeight")
-            if new_height == last_height:
-                break  # Достигли конца
-            last_height = new_height
-
-    def __collect_articles(self) -> list[ArticleCard]:
+    def _collect_articles(self) -> list[ArticleCard]:
         # Получаем контейнер с текущими статьями
         card_containers_list = driver.find_elements(By.CLASS_NAME, 'app-card-open__main')
         # Статьи с текущей страницы
@@ -157,25 +145,16 @@ class ScrappingService:
         
         # Собираем каждую статью на текущей странице
         for card_container in card_containers_list:
-            atrticles_on_current_page.append(self.__get_articles(card_container))
+            atrticles_on_current_page.append(self._get_articles(card_container))
         return atrticles_on_current_page
 
     def set_search_params(self, search_params):
         self.__search_params = search_params
     
-    def start(self, progress_parsing_page_cb: Optional[Callable[[PageInfo], None]] = None):
-        '''
-            Args:
-                progress_parsing_page_cb: Опциональный callback, вызываемый после обработки каждой страницы.
-                               Принимает PageInfo с полями:
-                               - current: номер текущей страницы в списке
-                               - total: общее количество страниц
-        '''
-        try:
-            # Открываем страницу браузера и сразу оказываемся на первой странице
-            self.__get(self.__search_params)
+    def _scrapping_articles(self, progress_parsing_page_cb: Optional[Callable[[PageInfo], None]] = None):
+        try:           
             # Получаем количество страниц
-            pages_range = self.__get_pages_range()
+            pages_range = self._get_pages_range()
             # Если страниц нет - выходим, т.к. результатов не найдено
             if not pages_range:
                 return 
@@ -185,9 +164,9 @@ class ScrappingService:
             for page in pages_range:
                 try:
                     time.sleep(2)
-                    self.__get({**self.__search_params, "page":page})
+                    self._get({**self.__search_params, "page":page})
 
-                    atrticles_on_current_page = self.__collect_articles()
+                    atrticles_on_current_page = self._collect_articles()
 
                     # Записываем в словарь с индексацией по странице 
                     article_dict[page] = atrticles_on_current_page
@@ -204,3 +183,9 @@ class ScrappingService:
             print(f'Parsing error: {ex}') 
             driver.quit()
             return
+        
+    def start(self, progress_parsing_page_cb: Optional[Callable[[PageInfo], None]] = None):
+        articles = self._scrapping_articles(progress_parsing_page_cb)
+        return articles
+        
+       
