@@ -212,28 +212,35 @@ class ScrappingService:
 
         return result
     
-    def _scroll_slowly(self, _driver, scroll_pause: float = 1, max_scrolls: int = 10):
+    # Плавный скролл вниз страницы
+    def _scroll_slowly(self, _driver, scroll_pause: float = 0.5, max_scrolls: int = 10):
         """
-        Медленно скроллит страницу для подгрузки динамического контента
+        Плавно скроллит страницу для подгрузки динамического контента
 
         Args:
-            driver: WebDriver
+            _driver: WebDriver
             scroll_pause: пауза между скроллами в секундах
             max_scrolls: максимальное количество скроллов
         """
         last_height = _driver.execute_script("return document.body.scrollHeight")
 
-        for _ in range(max_scrolls):
-            # Скроллим вниз
-            _driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        for i in range(max_scrolls):
+            # Плавный скролл вниз
+            _driver.execute_script("""
+                window.scrollTo({
+                    top: document.body.scrollHeight,
+                    behavior: 'smooth'
+                });
+            """)
 
-            # Ждем загрузки
+            # Ждем завершения анимации и загрузки
             time.sleep(scroll_pause)
 
             # Проверяем, загрузились ли новые элементы
             new_height = _driver.execute_script("return document.body.scrollHeight")
             if new_height == last_height:
-                break  # достигли конца
+                print(f"Достигнут конец страницы после {i+1} скроллов")
+                break
             last_height = new_height
             
     # Основная функция, запускающая всё остальное
