@@ -197,7 +197,10 @@ class ScrappingService:
                         accept_cookies = (i == 0)
                     )
                     
+                    self._scroll_slowly(_driver=driver_local)
+                    
                     articles = self._collect_articles_from_page(_driver=driver_local)
+                    
                     result[page] = articles
                 except Exception as ex:
                     print(f"Ошибка в сборе статей на странице {page}: {ex}")
@@ -209,6 +212,30 @@ class ScrappingService:
 
         return result
     
+    def _scroll_slowly(self, _driver, scroll_pause: float = 1, max_scrolls: int = 10):
+        """
+        Медленно скроллит страницу для подгрузки динамического контента
+
+        Args:
+            driver: WebDriver
+            scroll_pause: пауза между скроллами в секундах
+            max_scrolls: максимальное количество скроллов
+        """
+        last_height = _driver.execute_script("return document.body.scrollHeight")
+
+        for _ in range(max_scrolls):
+            # Скроллим вниз
+            _driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+
+            # Ждем загрузки
+            time.sleep(scroll_pause)
+
+            # Проверяем, загрузились ли новые элементы
+            new_height = _driver.execute_script("return document.body.scrollHeight")
+            if new_height == last_height:
+                break  # достигли конца
+            last_height = new_height
+            
     # Основная функция, запускающая всё остальное
     def _start_multythreads_scrapping(self):
         driver = driver_factory.create()
