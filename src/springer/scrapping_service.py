@@ -3,9 +3,11 @@ from src.springer.utils.create_url import create_url
 from src.driver import Driver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebElement
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 import time
-import random
 from concurrent.futures import ThreadPoolExecutor
+import numpy as np
 
 driver_factory = Driver()
 
@@ -24,9 +26,9 @@ ArticleCard = TypedDict("ArticleCard",
 
 class ScrappingService:
     def __init__(self, search_params):
-        self.__search_params = search_params
+        self._search_params = search_params
         
-    __search_params = {
+    _search_params = {
         "query":"",
         "page":"",
         "dateFrom":"",
@@ -57,28 +59,31 @@ class ScrappingService:
         извлекает номера страниц и возвращает список [1, 2, 3, ...N].
         Если результатов нет — возвращает пустой список.'''
         try:
-            self._get(self.__search_params, _driver, accept_cookies=True)
+            self._get(self._search_params, _driver, accept_cookies=True)
         except Exception as ex:
             print('Ошибка открытия страницы для подсчёта элементов пагинации')
             print(ex)
         
         pages_amount = []
-
+        
+        PAGES_SELECTOR = (By.CSS_SELECTOR, "[data-page]")
+        
         try:
-            webelements_list = _driver.find_elements(By.CSS_SELECTOR, "[data-page]")
-
+            wait = WebDriverWait(_driver, 10, poll_frequency=1)
+            wait.until(EC.element_to_be_clickable(PAGES_SELECTOR))
+            
+            # Получаем список элементов пагинации
+            webelements_list = _driver.find_elements(*PAGES_SELECTOR)
+            
             for list_pagination_item in webelements_list:
                 pages_amount.append(int(list_pagination_item.get_attribute('data-page')))
+                
         except Exception as ex:
             print('Ошибка получения элементов пагинации')
             print(ex)
             return []
-
-        if len(pages_amount) > 1:
-            pages_list = list(range(pages_amount[0], pages_amount[-1] + 1))
-            return pages_list
-        else:
-            return pages_amount
+        
+        return list(range(pages_amount[0], pages_amount[-1] + 1)) if len(pages_amount) > 1 else pages_amount 
 
     def _collect_articles(self, _driver) -> list[ArticleCard]:
         '''Собирает все карточки статей с текущей открытой страницы.
@@ -135,8 +140,12 @@ class ScrappingService:
 
             return card_meta
         
+        ARTICLE_SELECTOR = (By.CLASS_NAME, 'app-card-open__main')
+        wait = WebDriverWait(_driver, 10, poll_frequency=1)
+        wait.until(EC.element_to_be_clickable(ARTICLE_SELECTOR))
+        
         # Получаем контейнер с текущими статьями
-        card_containers_list = _driver.find_elements(By.CLASS_NAME, 'app-card-open__main')
+        card_containers_list = _driver.find_elements(*ARTICLE_SELECTOR)
         # Статьи с текущей страницы
         atrticles_on_current_page = []
         
@@ -147,53 +156,45 @@ class ScrappingService:
 
     def set_search_params(self, search_params):
         '''Перезаписывает параметры поиска (query, page, даты, сортировка и т.д.)'''
-        self.__search_params = search_params
+        self._search_params = search_params
     
-    def _pages_divide(self, pages: list[int]):
-        '''Делит список страниц пополам для параллельного скрапинга двумя потоками.
-        Например [1,2,3,4] -> first_half=[1,2], second_half=[3,4].
-        Если страница одна — second_half будет пустым.'''
-        def get_halfs(first:list[int], second:list[int]):
-            return {
-                "first_half": first, 
-                "second_half": second
-            }
+    def _divide_pages(self, pages) -> list[list]:
+        return [page_parts.tolist() for page_parts in np.array_split(pages, 3) if page_parts.tolist()]
 
-        total_pages = len(pages)
-
-        if not total_pages:
-            return get_halfs([], [])
-
-        if total_pages == 1:
-            return get_halfs(pages, [])
-
-        mid = len(pages) // 2
-        first_half = pages[:mid]
-        second_half = pages[mid:]
-
-        return get_halfs(first_half, second_half)
-    
     def _scrapping_articles(self, pages_range: list[int]) -> dict:
-        '''Скрапит свою часть страниц в отдельном потоке.
-        Создаёт собственный Chrome-драйвер, последовательно обходит каждую страницу
-        из pages_range, собирает статьи и складывает в dict {номер_страницы: [статьи]}.
-        В конце закрывает драйвер (finally). Пауза 2сек между страницами — защита от бана.'''
+        """
+            Собирает статьи со страницы.
+
+            Args:
+                pages_range (list): Список страниц
+
+            Returns:
+                list[ArticleCard]
+
+            Example:
+                {"1": [{"is_access": bool, 
+                    "title": str, 
+                    "link": str, 
+                    "description": str,
+                    "type": str]}
+                }
+        """
         if not pages_range:
             return {}
 
         driver_local = driver_factory.create()
+
         result = {}
 
         try:
             for i, page in enumerate(pages_range):
                 try:
-                    if i > 0:
-                        time.sleep(random.uniform(0.5, 1.5))
                     self._get(
-                        {**self.__search_params, "page": page},
+                        {**self._search_params, "page": page},
                         _driver=driver_local,
-                        accept_cookies=(i == 0)
+                        accept_cookies = (i == 0)
                     )
+                    
                     articles = self._collect_articles(_driver=driver_local)
                     result[page] = articles
                 except Exception as ex:
@@ -213,22 +214,21 @@ class ScrappingService:
         3) Запускает 2 потока (ThreadPoolExecutor), каждый скрапит свою половину
            страниц в собственном браузере (_scrapping_articles).
         4) Собирает результаты из обоих потоков в один dict и возвращает.'''
-        main_driver = driver_factory.create()
-        pages_range = self._get_pages_range(main_driver)
-        main_driver.quit()
-
-        divided_pages = self._pages_divide(pages_range)
+        driver = driver_factory.create()
+        pages_range = self._get_pages_range(driver)
+        driver.quit()
+        divided_pages = self._divide_pages(pages_range)
+        
+        if not divided_pages:
+            print(f"Список страниц пустой")
+            return None
+        
         articles_result = {}
-
-        halves = [h for h in [divided_pages['first_half'], divided_pages['second_half']] if h]
-
-        if not halves:
-            return articles_result
-
-        with ThreadPoolExecutor(max_workers=len(halves)) as executor:
-            futures = [executor.submit(self._scrapping_articles, half) for half in halves]
-
+        
+        with ThreadPoolExecutor(max_workers=len(divided_pages)) as executor:
+            futures = [executor.submit(self._scrapping_articles, pages) for pages in divided_pages]
+            
             for future in futures:
-                articles_result.update(future.result())
-
-        return articles_result
+               articles_result.update(future.result())
+            
+        return  articles_result

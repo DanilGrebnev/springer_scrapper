@@ -15,17 +15,17 @@
       "type": "Article"
     },
     {
-      "is_access": false,
-      "title": "Composition and Structure of Surface Layer in Composite Castings from Gray Cast Iron Formed Using Chromium-Ferroboron Master Alloys",
-      "link": "https://link.springer.com/article/10.1007/s11041-024-01011-7",
-      "description": "A method for obtaining composite surface-alloyed castings from gray cast iron SCh25 by cavityless casting with the use of master alloys containing...",
-      "type": "Article"
-    },
-    {
       "is_access": true,
       "title": "Mechanical Characterization of Multi-material Castings Produced by an Injector Casting-Based Process",
       "link": "https://link.springer.com/article/10.1007/s40962-025-01809-y",
       "description": "In the multi-material injector casting process, two different melts are cast consecutively into a mold through a ceramic injector. The current work...",
+      "type": "Article"
+    },
+    {
+      "is_access": false,
+      "title": "Composition and Structure of Surface Layer in Composite Castings from Gray Cast Iron Formed Using Chromium-Ferroboron Master Alloys",
+      "link": "https://link.springer.com/article/10.1007/s11041-024-01011-7",
+      "description": "A method for obtaining composite surface-alloyed castings from gray cast iron SCh25 by cavityless casting with the use of master alloys containing...",
       "type": "Article"
     },
     {
@@ -43,17 +43,17 @@
       "type": "Article"
     },
     {
-      "is_access": false,
-      "title": "Microstructure development and mold metal reactions during investment casting of nickel superalloys—a review",
-      "link": "https://link.springer.com/article/10.1007/s00170-025-16579-4",
-      "description": "Nickel superalloys are widely used in the aerospace industry and power generation from gas due to their excellent thermomechanical and chemical...",
-      "type": "Article"
-    },
-    {
       "is_access": true,
       "title": "Dual-Alloy Sand Mold Casting: Main Principles and Features",
       "link": "https://link.springer.com/article/10.1007/s40962-024-01289-6",
       "description": "The multi-material injector casting (MMIC) process allows the production of castings with two different alloys in a single process. The metal is...",
+      "type": "Article"
+    },
+    {
+      "is_access": false,
+      "title": "Microstructure development and mold metal reactions during investment casting of nickel superalloys—a review",
+      "link": "https://link.springer.com/article/10.1007/s00170-025-16579-4",
+      "description": "Nickel superalloys are widely used in the aerospace industry and power generation from gas due to their excellent thermomechanical and chemical...",
       "type": "Article"
     },
     {
@@ -100,6 +100,13 @@
     },
     {
       "is_access": false,
+      "title": "Production of Track Links for Agricultural Tractors from Low-Alloy Steel Subjected to Local Surface Hardening",
+      "link": "https://link.springer.com/article/10.1134/S0036029525701952",
+      "description": "The possibility of producing track links from low-alloy steel 30GSL with local hardening using surface alloying technology in a casting mold...",
+      "type": "Article"
+    },
+    {
+      "is_access": false,
       "title": "Die-Casting Processes",
       "link": "https://link.springer.com/chapter/10.1007/978-3-031-84620-5_10",
       "description": "This chapter presents an in-depth discussion and analysis of die-casting processes. Permanent-mold casting processes have been defined and classified...",
@@ -110,13 +117,6 @@
       "title": "Enhancing Manganese Steel Castings: The Role of Magnesium, Calcium, and Surface-Active Elements in Reinforcing Ceramic-Metal Composite Structures",
       "link": "https://link.springer.com/article/10.1007/s40962-025-01640-5",
       "description": "The enhancement of manganese steel castings through the incorporation of magnesium, calcium, and surface-active elements has been investigated with a...",
-      "type": "Article"
-    },
-    {
-      "is_access": false,
-      "title": "Production of Track Links for Agricultural Tractors from Low-Alloy Steel Subjected to Local Surface Hardening",
-      "link": "https://link.springer.com/article/10.1134/S0036029525701952",
-      "description": "The possibility of producing track links from low-alloy steel 30GSL with local hardening using surface alloying technology in a casting mold...",
       "type": "Article"
     },
     {
@@ -141,7 +141,148 @@
       "type": "Article"
     }
   ],
-  "2": [],
+  "2": [
+    {
+      "is_access": false,
+      "title": "Structural Casting Alloys with Highest Recycling Content and Lowest Carbon Footprint",
+      "link": "https://link.springer.com/article/10.1007/s40962-025-01681-w",
+      "description": "With the electrification of vehicles, less powertrain castings and more structural castings are needed. Powertrain castings were mainly produced from...",
+      "type": "Article"
+    },
+    {
+      "is_access": false,
+      "title": "Development of Directional Solidification for High-Temperature and Intermetallic Alloy Castings (Review)",
+      "link": "https://link.springer.com/article/10.1134/S0036029524702677",
+      "description": "The improvement of the technology of casting turbine blade castings with a directional and single-crystal structure, casting equipment, and...",
+      "type": "Article"
+    },
+    {
+      "is_access": true,
+      "title": "Influence of Cooling Rate and Alloying by “Cr, V, and Ni” on Microstructure and High-Temperature Wear Behavior of SiMo Ductile Iron",
+      "link": "https://link.springer.com/article/10.1007/s40962-023-01224-1",
+      "description": "SiMo ductile irons, typical heat-resistant materials, are subjected to varied wear environments during operation in high-temperature applications....",
+      "type": "Article"
+    },
+    {
+      "is_access": false,
+      "title": "Effects of Bi Addition on Bifilm and Mechanical Properties of C611 Aluminum Alloy Castings",
+      "link": "https://link.springer.com/article/10.1007/s11663-025-03585-w",
+      "description": "Bifilm is one of the main reasons for the reduction of mechanical properties of castings. The present paper proposes a novel idea of controlling...",
+      "type": "Article"
+    },
+    {
+      "is_access": false,
+      "title": "Investigation of the Effect of Vanadium Addition on Mechanical Properties in A356 Aluminum Casting Alloys",
+      "link": "https://link.springer.com/article/10.1007/s40962-024-01492-5",
+      "description": "The superior properties of aluminum alloys are further improved by the addition of different elements and gain new qualities. In the aluminum casting...",
+      "type": "Article"
+    },
+    {
+      "is_access": false,
+      "title": "Numerical Simulation and Experimental Investigation of Microstructure Evolution and Flow Behavior in the Rheological Squeeze Casting Process of A356 Alloy",
+      "link": "https://link.springer.com/article/10.1007/s40962-024-01450-1",
+      "description": "This paper carried out numerical simulations of the entire process of rheological squeeze casting of A356 alloy, evaluated the impact of various...",
+      "type": "Article"
+    },
+    {
+      "is_access": false,
+      "title": "Solidification and Casting",
+      "link": "https://link.springer.com/chapter/10.1007/978-3-031-97125-9_1",
+      "description": "This chapter begins by introducing the conditions necessary for homogeneous versus heterogeneous nucleation of the solid phase from a liquid. Various...",
+      "type": "Chapter"
+    },
+    {
+      "is_access": false,
+      "title": "Study on Simulation Method for Crash Failure of Megacastings Considering Casting Processes",
+      "link": "https://link.springer.com/article/10.1007/s40962-025-01693-6",
+      "description": "In the automotive manufacturing industry, megacastings, which are characterized by their large size and intricate structures, have attracted...",
+      "type": "Article"
+    },
+    {
+      "is_access": false,
+      "title": "Mechanisms Controlling the Microstructure Evolution and Mechanical Property in Al-7Si-0.3Mg Alloy via Semisolid Rheological Die Casting and Short-Term T6 Heat Treatment",
+      "link": "https://link.springer.com/article/10.1007/s40962-025-01759-5",
+      "description": "This study proposes a process that integrates the metal melt instantaneous undercooling-induced nucleation technique with rheological die casting. It...",
+      "type": "Article"
+    },
+    {
+      "is_access": false,
+      "title": "Industry 4.0 in the Metal Casting; Current Status and Developing Trends",
+      "link": "https://link.springer.com/article/10.1007/s44206-025-00229-z",
+      "description": "At the heart of the fourth industrial revolution, or industry 4.0 is the digital transformation of the manufacturing processes. The implementation of...",
+      "type": "Article"
+    },
+    {
+      "is_access": false,
+      "title": "Industry 4.0 Adoption Using AI/ML-Driven Metamodels for High-Performance Ductile Iron Sand Casting Design and Manufacturing",
+      "link": "https://link.springer.com/article/10.1007/s40962-024-01338-0",
+      "description": "Data-centric near-real-time intelligent process control for smart manufacturing in an Industry 4.0 era is of tremendous value. Design and...",
+      "type": "Article"
+    },
+    {
+      "is_access": false,
+      "title": "Centrifugal Casting of Aluminum Alloys as a Method for Obtaining Semi-Finished Products with an Increased Set of Properties for Space Technology Products",
+      "link": "https://link.springer.com/article/10.1134/S2075113325701321",
+      "description": "Abstract—This research studied the effect of centrifugal casting on the mechanical properties of deformable semi-finished products made of aluminum...",
+      "type": "Article"
+    },
+    {
+      "is_access": false,
+      "title": "Structural die casting application of a heat treated free aluminum-silicon alloy",
+      "link": "https://link.springer.com/article/10.1007/s41230-025-4283-y",
+      "description": "The advancement of integrated die-casting technology calls for high-strength, high-ductility heat-treatment-free Al alloys. This study investigates...",
+      "type": "Article"
+    },
+    {
+      "is_access": false,
+      "title": "Influence of introducing Zr, Ti, Nb and Ce elements on externally solidified crystals and mechanical properties of high-pressure die-casting Al–Si alloy",
+      "link": "https://link.springer.com/article/10.1007/s12613-024-2882-z",
+      "description": "High pressure die casting (HPDC) AlSi10MnMg alloy castings are widely used in the automobile industry. Mg can optimize the mechanical properties of...",
+      "type": "Article"
+    },
+    {
+      "is_access": false,
+      "title": "Study of Thermal Stability of Phosphorus Bainitic Gray Cast Iron for Valve Seats of Internal Combustion Engines",
+      "link": "https://link.springer.com/article/10.1134/S0036029525701782",
+      "description": "A study was performed of the effect of the operating temperature (~550°C) simulation in a new design of the cylinder head for internal...",
+      "type": "Article"
+    },
+    {
+      "is_access": false,
+      "title": "Computer Modeling of Casting Processes for Centrifugal Pump Parts",
+      "link": "https://link.springer.com/chapter/10.1007/978-3-031-42778-7_1",
+      "description": "The paper describes the application of computer programs for modeling foundry processes – casting metal blanks. Several casting objects (samples) of...",
+      "type": "Conference paper"
+    },
+    {
+      "is_access": false,
+      "title": "High-Performance Aluminum Castings Containing Rare Earth Elements",
+      "link": "https://link.springer.com/chapter/10.1007/978-3-031-31867-2_14",
+      "description": "Cerium(IV) oxide (CeO2) is one of the predominate oxides produced in rare earth mining. Much of it is discarded after separation from the higher...",
+      "type": "Chapter"
+    },
+    {
+      "is_access": false,
+      "title": "Effect of Molybdenum as an Alloying Element on the Strength of Grey Cast Iron",
+      "link": "https://link.springer.com/chapter/10.1007/978-981-97-5967-5_24",
+      "description": "Grey cast iron’s thermal conductivity and mechanical properties depend on graphite flake morphology and length. Molybdenum is generally added to...",
+      "type": "Conference paper"
+    },
+    {
+      "is_access": false,
+      "title": "Bond formation between aluminum-based metal matrix composites and aluminum alloys in compound castings",
+      "link": "https://link.springer.com/article/10.1007/s40962-024-01270-3",
+      "description": "The use of inserts allows for the selective reinforcement of castings to improve mechanical properties, including surface hardness and wear rate....",
+      "type": "Article"
+    },
+    {
+      "is_access": false,
+      "title": "Grain Refining of Aluminum Casting Alloys: Unsolved Mysteries",
+      "link": "https://link.springer.com/article/10.1007/s40962-024-01448-9",
+      "description": "This paper reviews current knowledge of the grain refining of aluminum casting alloys and its role during solidification. The primary focus is on...",
+      "type": "Article"
+    }
+  ],
   "3": [
     {
       "is_access": false,
@@ -152,16 +293,16 @@
     },
     {
       "is_access": false,
-      "title": "Quality improvement in sand casting process: a hybrid approach based on machine learning and metaheuristic optimization methods",
-      "link": "https://link.springer.com/article/10.1007/s10845-025-02698-y",
-      "description": "This paper presents a hybrid process optimization approach that combines machine learning (ML) and metaheuristic algorithms (MA) to reduce quality...",
+      "title": "Modeling and Process Optimization of Investment Casting for Nickel-Based Alloys Based on Improved Gray Relational Analysis",
+      "link": "https://link.springer.com/article/10.1007/s40962-025-01654-z",
+      "description": "Optimizing the investment casting process is crucial for enhancing casting quality, reducing production costs, and improving production efficiency....",
       "type": "Article"
     },
     {
       "is_access": false,
-      "title": "Modeling and Process Optimization of Investment Casting for Nickel-Based Alloys Based on Improved Gray Relational Analysis",
-      "link": "https://link.springer.com/article/10.1007/s40962-025-01654-z",
-      "description": "Optimizing the investment casting process is crucial for enhancing casting quality, reducing production costs, and improving production efficiency....",
+      "title": "Quality improvement in sand casting process: a hybrid approach based on machine learning and metaheuristic optimization methods",
+      "link": "https://link.springer.com/article/10.1007/s10845-025-02698-y",
+      "description": "This paper presents a hybrid process optimization approach that combines machine learning (ML) and metaheuristic algorithms (MA) to reduce quality...",
       "type": "Article"
     },
     {
@@ -201,16 +342,16 @@
     },
     {
       "is_access": false,
-      "title": "Characterization of microstructure and wear behavior of nickel modified Zn-27% Al alloy casting",
-      "link": "https://link.springer.com/article/10.1007/s41230-024-3052-7",
-      "description": "Improvement of mechanical and tribological behaviors of zinc-based die cast alloy is necessary for bearing applications, and chemical modification is...",
+      "title": "Gravity and Semisolid Casting of Self-Healing Aluminum Matrix Composites",
+      "link": "https://link.springer.com/article/10.1007/s40962-024-01333-5",
+      "description": "This paper focuses on casting self-healing metal matrix composites with aluminum alloy as a matrix, and Nitinol fiber as reinforcement. The shape...",
       "type": "Article"
     },
     {
       "is_access": false,
-      "title": "Gravity and Semisolid Casting of Self-Healing Aluminum Matrix Composites",
-      "link": "https://link.springer.com/article/10.1007/s40962-024-01333-5",
-      "description": "This paper focuses on casting self-healing metal matrix composites with aluminum alloy as a matrix, and Nitinol fiber as reinforcement. The shape...",
+      "title": "Characterization of microstructure and wear behavior of nickel modified Zn-27% Al alloy casting",
+      "link": "https://link.springer.com/article/10.1007/s41230-024-3052-7",
+      "description": "Improvement of mechanical and tribological behaviors of zinc-based die cast alloy is necessary for bearing applications, and chemical modification is...",
       "type": "Article"
     },
     {
@@ -236,23 +377,9 @@
     },
     {
       "is_access": false,
-      "title": "Understanding Heterogeneous Nucleation in Iron Alloys from First Principles: A Review and Discussion",
-      "link": "https://link.springer.com/article/10.1007/s40962-025-01562-2",
-      "description": "Heterogeneous nucleation during solidification plays a key role in structure formation of different types of iron-based alloys, including steels and...",
-      "type": "Article"
-    },
-    {
-      "is_access": false,
       "title": "Investigating the Effect of Cooling Rate and Nucleation on the Microstructure and Tensile Strength of Alloy 6061",
       "link": "https://link.springer.com/article/10.1007/s40962-025-01787-1",
       "description": "In this research, two casting methods, CO2sand casting and permanent mold casting, were employed to investigate the effect of cooling rate on the...",
-      "type": "Article"
-    },
-    {
-      "is_access": true,
-      "title": "Cooling Curves of Concentrated Alloys, Steelmaking Slag, and Lithium Iron Phosphate",
-      "link": "https://link.springer.com/article/10.1007/s40962-024-01323-7",
-      "description": "Over the past few years, a variety of melting casting projects have been performed, in collaboration with industries and universities. Concentrated...",
       "type": "Article"
     },
     {
@@ -267,6 +394,20 @@
       "title": "Insight into effect of forced convection during slab casting on as-cast solidification structure",
       "link": "https://link.springer.com/article/10.1007/s42243-024-01367-3",
       "description": "Solidification structure of casting strands significantly impacts the subsequent processing and service properties of the steel products, which...",
+      "type": "Article"
+    },
+    {
+      "is_access": false,
+      "title": "Understanding Heterogeneous Nucleation in Iron Alloys from First Principles: A Review and Discussion",
+      "link": "https://link.springer.com/article/10.1007/s40962-025-01562-2",
+      "description": "Heterogeneous nucleation during solidification plays a key role in structure formation of different types of iron-based alloys, including steels and...",
+      "type": "Article"
+    },
+    {
+      "is_access": true,
+      "title": "Cooling Curves of Concentrated Alloys, Steelmaking Slag, and Lithium Iron Phosphate",
+      "link": "https://link.springer.com/article/10.1007/s40962-024-01323-7",
+      "description": "Over the past few years, a variety of melting casting projects have been performed, in collaboration with industries and universities. Concentrated...",
       "type": "Article"
     },
     {
@@ -293,13 +434,6 @@
       "type": "Article"
     },
     {
-      "is_access": true,
-      "title": "Thermal Analysis of Ductile Iron: A New Way to Predict the Mechanical Properties",
-      "link": "https://link.springer.com/article/10.1007/s40962-023-01222-3",
-      "description": "Thermal analysis is characterized by the recording and evaluation of the temperature curve over time. Due to the correlation between transformation...",
-      "type": "Article"
-    },
-    {
       "is_access": false,
       "title": "Effect of Grain Size on Machinability and Corrosion Behavior of CuZn19Al6 Aircraft Bronze Alloy",
       "link": "https://link.springer.com/article/10.1007/s40962-025-01729-x",
@@ -307,10 +441,10 @@
       "type": "Article"
     },
     {
-      "is_access": false,
-      "title": "The Effect of Pressurization on Feeding Behavior and Porosity in A356 Alloy",
-      "link": "https://link.springer.com/article/10.1007/s40962-025-01739-9",
-      "description": "The effects of external pressure during solidification of A356 alloy were investigated on porosity reduction and microstructural evolution. The...",
+      "is_access": true,
+      "title": "Thermal Analysis of Ductile Iron: A New Way to Predict the Mechanical Properties",
+      "link": "https://link.springer.com/article/10.1007/s40962-023-01222-3",
+      "description": "Thermal analysis is characterized by the recording and evaluation of the temperature curve over time. Due to the correlation between transformation...",
       "type": "Article"
     },
     {
@@ -322,9 +456,9 @@
     },
     {
       "is_access": false,
-      "title": "Effect of Si content on microstructure, mechanical, and thermal/electrical conductivities of Al-xSi-0.3Mn-0.3Mg-0.14Fe alloy prepared by super-slow-speed die-casting",
-      "link": "https://link.springer.com/article/10.1007/s41230-025-4082-5",
-      "description": "In this study, Al-xSi-0.3Mn-0.3Mg-0.14Fe alloys (x=6.5, 7.5, 8.5, wt.%) were prepared by super-slow-speed die-casting, and the effect of Si content...",
+      "title": "The Effect of Pressurization on Feeding Behavior and Porosity in A356 Alloy",
+      "link": "https://link.springer.com/article/10.1007/s40962-025-01739-9",
+      "description": "The effects of external pressure during solidification of A356 alloy were investigated on porosity reduction and microstructural evolution. The...",
       "type": "Article"
     },
     {
@@ -332,6 +466,13 @@
       "title": "Effect of Alloying Elements, Solutionizing Time and Quenching Media on the Microstructure and Tensile Properties of 413-Based Alloys",
       "link": "https://link.springer.com/article/10.1007/s40962-024-01457-8",
       "description": "Nine different compositions of were studied: the basic 413.1 alloy and this same alloy with different additions of strontium (Sr), magnesium (Mg),...",
+      "type": "Article"
+    },
+    {
+      "is_access": false,
+      "title": "Effect of Si content on microstructure, mechanical, and thermal/electrical conductivities of Al-xSi-0.3Mn-0.3Mg-0.14Fe alloy prepared by super-slow-speed die-casting",
+      "link": "https://link.springer.com/article/10.1007/s41230-025-4082-5",
+      "description": "In this study, Al-xSi-0.3Mn-0.3Mg-0.14Fe alloys (x=6.5, 7.5, 8.5, wt.%) were prepared by super-slow-speed die-casting, and the effect of Si content...",
       "type": "Article"
     },
     {
@@ -370,17 +511,17 @@
       "type": "Article"
     },
     {
+      "is_access": false,
+      "title": "The Influence of IN718 Superalloy Swarf on the Toughness and Fracture Mechanics of GG25 Gray Cast Iron",
+      "link": "https://link.springer.com/article/10.1007/s11665-025-11123-7",
+      "description": "In this research, continuous IN718 swarf was used as reinforcement for GG25 gray cast iron. Swarf was directionally placed inside the foam model, and...",
+      "type": "Article"
+    },
+    {
       "is_access": true,
       "title": "Chemical composition design in cast aluminum alloys for enhanced microstructure and functionality",
       "link": "https://link.springer.com/article/10.1007/s44371-025-00331-8",
       "description": "Aluminium alloys are designed by adding specific alloying elements such as manganese, silicon, magnesium, to the base metal to achieve desired...",
-      "type": "Article"
-    },
-    {
-      "is_access": false,
-      "title": "Control of Graphite Structure in High Phosphorus Grey Cast Iron Brake Shoes through Ferro-Silicon Inoculant",
-      "link": "https://link.springer.com/article/10.1007/s40962-024-01302-y",
-      "description": "Grey cast iron has a wide range of industrial applications. In the Thailand railway industry, grey cast iron is used in the manufacture of brake...",
       "type": "Article"
     },
     {
@@ -392,9 +533,23 @@
     },
     {
       "is_access": false,
-      "title": "The Influence of IN718 Superalloy Swarf on the Toughness and Fracture Mechanics of GG25 Gray Cast Iron",
-      "link": "https://link.springer.com/article/10.1007/s11665-025-11123-7",
-      "description": "In this research, continuous IN718 swarf was used as reinforcement for GG25 gray cast iron. Swarf was directionally placed inside the foam model, and...",
+      "title": "Control of Graphite Structure in High Phosphorus Grey Cast Iron Brake Shoes through Ferro-Silicon Inoculant",
+      "link": "https://link.springer.com/article/10.1007/s40962-024-01302-y",
+      "description": "Grey cast iron has a wide range of industrial applications. In the Thailand railway industry, grey cast iron is used in the manufacture of brake...",
+      "type": "Article"
+    },
+    {
+      "is_access": true,
+      "title": "Production of Efficient Nodular Cast Iron Gears—Considering the Fatigue Strength and Rolling Contact Fatigue Strength Based on the Local Microstructure",
+      "link": "https://link.springer.com/article/10.1007/s40962-024-01525-z",
+      "description": "Large gears with diameters of several meters, used in heavy engineering and mining industries, are subjected to high fatigue and rolling contact...",
+      "type": "Article"
+    },
+    {
+      "is_access": true,
+      "title": "Revealing ancient technology: a high-energy X-ray computed tomography examination of a Mesopotamian copper alloy head",
+      "link": "https://www.nature.com/articles/s40494-024-01417-9",
+      "description": "Although the origins of lost wax casting extend back into the 5th millennium BCE, it was not until the development of hollow core casting that...",
       "type": "Article"
     },
     {
@@ -406,9 +561,18 @@
     },
     {
       "is_access": false,
-      "title": "Improved Microstructural and Mechanical Properties Inhomogeneity of a Large-Scale AZ91D Magnesium Alloy Billet by Low-Frequency Electromagnetic Casting",
-      "link": "https://link.springer.com/article/10.1007/s12540-024-01823-5",
-      "description": "The effects of low-frequency electromagnetic field on the homogeneity of microstructure and mechanical properties of Φ530 mm AZ91D magnesium alloy...",
+      "title": "Advanced Process Influenced by Holding Time in the (α + γ) Temperature Range, on the Mechanical Characteristics of Permanent Molded Toughened ADI",
+      "link": "https://link.springer.com/article/10.1007/s40032-024-01091-7",
+      "description": "Austempered Ductile Iron (ADI) castings are produced for various engineering applications especially, gears, crank shafts, axles etc. The ADI...",
+      "type": "Article"
+    }
+  ],
+  "5": [
+    {
+      "is_access": false,
+      "title": "Microstructural Evolution and Wear Dynamics of Al5052/Cenosphere Metal Matrix Composite Fabricated Through Compo-Casting Technique",
+      "link": "https://link.springer.com/article/10.1007/s12666-024-03370-4",
+      "description": "The present study uses the compo-casting technique to fabricate cenosphere-reinforced Al5052 alloy. The wear tests were performed utilizing a...",
       "type": "Article"
     },
     {
@@ -416,29 +580,6 @@
       "title": "Advanced Process Influenced by Holding Time in the (α + γ) Temperature Range, on the Mechanical Characteristics of Permanent Molded Toughened ADI",
       "link": "https://link.springer.com/article/10.1007/s40032-024-01091-7",
       "description": "Austempered Ductile Iron (ADI) castings are produced for various engineering applications especially, gears, crank shafts, axles etc. The ADI...",
-      "type": "Article"
-    },
-    {
-      "is_access": false,
-      "title": "Microstructural Evolution and Wear Dynamics of Al5052/Cenosphere Metal Matrix Composite Fabricated Through Compo-Casting Technique",
-      "link": "https://link.springer.com/article/10.1007/s12666-024-03370-4",
-      "description": "The present study uses the compo-casting technique to fabricate cenosphere-reinforced Al5052 alloy. The wear tests were performed utilizing a...",
-      "type": "Article"
-    }
-  ],
-  "5": [
-    {
-      "is_access": true,
-      "title": "Revealing ancient technology: a high-energy X-ray computed tomography examination of a Mesopotamian copper alloy head",
-      "link": "https://www.nature.com/articles/s40494-024-01417-9",
-      "description": "Although the origins of lost wax casting extend back into the 5th millennium BCE, it was not until the development of hollow core casting that...",
-      "type": "Article"
-    },
-    {
-      "is_access": false,
-      "title": "Microstructural Evolution and Wear Dynamics of Al5052/Cenosphere Metal Matrix Composite Fabricated Through Compo-Casting Technique",
-      "link": "https://link.springer.com/article/10.1007/s12666-024-03370-4",
-      "description": "The present study uses the compo-casting technique to fabricate cenosphere-reinforced Al5052 alloy. The wear tests were performed utilizing a...",
       "type": "Article"
     },
     {
@@ -464,6 +605,13 @@
     },
     {
       "is_access": false,
+      "title": "Key Parameters of Modification Processes in Producing Graphitized Structural Cast Irons",
+      "link": "https://link.springer.com/article/10.1134/S0036029525701770",
+      "description": "This paper outlines the specific features of high-strength cast iron (SGI) structuring with or without late graphitizing modification, the...",
+      "type": "Article"
+    },
+    {
+      "is_access": false,
       "title": "Iron-Based Metal Matrix Composite: A Critical Review on the Microstructural Design, Fabrication Processes, and Mechanical Properties",
       "link": "https://link.springer.com/article/10.1007/s40195-024-01758-1",
       "description": "Iron-based metal matrix composites (IMMCs) have attracted significant research attention due to their high specific stiffness and strength, making...",
@@ -474,13 +622,6 @@
       "title": "Evolution of structure and properties of iron–carbon alloys produced by aluminothermy at differentiation of fractional composition of charge materials",
       "link": "https://link.springer.com/article/10.1007/s11015-025-01888-6",
       "description": "The growth of industrial production and the development of competitively priced, high-quality products for global markets are driven by the...",
-      "type": "Article"
-    },
-    {
-      "is_access": false,
-      "title": "Key Parameters of Modification Processes in Producing Graphitized Structural Cast Irons",
-      "link": "https://link.springer.com/article/10.1134/S0036029525701770",
-      "description": "This paper outlines the specific features of high-strength cast iron (SGI) structuring with or without late graphitizing modification, the...",
       "type": "Article"
     },
     {
@@ -526,17 +667,17 @@
       "type": "Article"
     },
     {
-      "is_access": false,
-      "title": "Effect of Nb Addition on Compact Microstructure and Mechanical Properties of Gray Cast Iron for Cylinder Liner",
-      "link": "https://link.springer.com/article/10.1007/s40962-024-01292-x",
-      "description": "To improve the mechanical properties and the strengthening mechanism, gray cast irons (Nb content is 0 wt.%, 0.15 wt.%, 0.2 wt.%, 0.25 wt.%,...",
-      "type": "Article"
-    },
-    {
       "is_access": true,
       "title": "Objective Description of Graphite Morphology in Ductile Cast Iron by Numerical Geometric Parameters",
       "link": "https://link.springer.com/article/10.1007/s40962-025-01706-4",
       "description": "As an innovative evolution of conventional cast iron, solid solution-strengthened ductile iron (SSDI) with its excellent ductility and strength...",
+      "type": "Article"
+    },
+    {
+      "is_access": false,
+      "title": "Effect of Nb Addition on Compact Microstructure and Mechanical Properties of Gray Cast Iron for Cylinder Liner",
+      "link": "https://link.springer.com/article/10.1007/s40962-024-01292-x",
+      "description": "To improve the mechanical properties and the strengthening mechanism, gray cast irons (Nb content is 0 wt.%, 0.15 wt.%, 0.2 wt.%, 0.25 wt.%,...",
       "type": "Article"
     },
     {
@@ -571,9 +712,16 @@
   "6": [
     {
       "is_access": false,
-      "title": "Controlling Nitrogen Pickup during Induction Melting of Ultrahigh-Strength Cr-Ni-Mo-V Steels",
-      "link": "https://link.springer.com/article/10.1007/s40962-025-01708-2",
-      "description": "Nitrogen pickup during air induction melting can result in porosity and a loss of fracture toughness in ultrahigh-strength quenched and tempered...",
+      "title": "Numerical Simulation and Experimental Validation of Fluidity of AlSi12CuNiMg Alloy using Multi Spiral Channel with Varying Thickness",
+      "link": "https://link.springer.com/article/10.1007/s40962-024-01383-9",
+      "description": "The cast AlSi12CuNiMg alloy finds broad applications in automotive components. The manufacture of defect-free castings, especially for long,...",
+      "type": "Article"
+    },
+    {
+      "is_access": true,
+      "title": "Microstructure, phase transformation temperatures and long-term stability of ex-situ Alloy 718 + TiB2 metal-ceramic nanocomposites as a repair coatings for aerospace applications",
+      "link": "https://link.springer.com/article/10.1038/s41598-025-29049-4",
+      "description": "In this study, Ni-based superalloy Alloy 718 + xTiB2(x = 1.25; 2.5; 3.75; 5.0%) composites were fabricated by suction casting to improve hardness,...",
       "type": "Article"
     },
     {
@@ -582,13 +730,6 @@
       "link": "https://link.springer.com/chapter/10.1007/978-3-031-57152-7_10",
       "description": "Foundry technology and related casting process is introduced as the initial source for equilibrium or quasi-static solidification of pure metals and...",
       "type": "Chapter"
-    },
-    {
-      "is_access": true,
-      "title": "Microstructure, phase transformation temperatures and long-term stability of ex-situ Alloy 718 + TiB2 metal-ceramic nanocomposites as a repair coatings for aerospace applications",
-      "link": "https://link.springer.com/article/10.1038/s41598-025-29049-4",
-      "description": "In this study, Ni-based superalloy Alloy 718 + xTiB2(x = 1.25; 2.5; 3.75; 5.0%) composites were fabricated by suction casting to improve hardness,...",
-      "type": "Article"
     },
     {
       "is_access": false,
@@ -605,17 +746,17 @@
       "type": "Article"
     },
     {
-      "is_access": true,
-      "title": "Simulation and experiment research on heat treatment of micro and nano BN particles modified casting aluminum copper alloys",
-      "link": "https://link.springer.com/article/10.1038/s41598-025-05162-2",
-      "description": "The heat treatment process is a key technology to improve the performance of cast aluminum-copper alloys with micro-nano boron nitride (BN)...",
-      "type": "Article"
-    },
-    {
       "is_access": false,
       "title": "Investigation on the Dry Sliding Wear Behavior of LM 25 Alloy Amalgamated with Novel Combination of Modifiers",
       "link": "https://link.springer.com/article/10.1007/s11665-025-11254-x",
       "description": "LM 25 (hypoeutectic) alloys are commonly used in their cast form for critical applications like engine blocks and pistons, where enhanced wear...",
+      "type": "Article"
+    },
+    {
+      "is_access": true,
+      "title": "Simulation and experiment research on heat treatment of micro and nano BN particles modified casting aluminum copper alloys",
+      "link": "https://link.springer.com/article/10.1038/s41598-025-05162-2",
+      "description": "The heat treatment process is a key technology to improve the performance of cast aluminum-copper alloys with micro-nano boron nitride (BN)...",
       "type": "Article"
     },
     {
@@ -683,16 +824,16 @@
     },
     {
       "is_access": false,
-      "title": "Some Effects of Low-Frequency Vibration During Solidification of Fe–28Mn–12Al–0.9Si–1.4C Steel As-Cast Ingots",
-      "link": "https://link.springer.com/article/10.1007/s40962-025-01555-1",
-      "description": "The paper presents the results of experimental studies, devoted to investigation of the vibration treatment influence on the defects and structure...",
+      "title": "Numerical simulation of solidified microstructure of ternary Al-Si-Mg alloy using an improved cellular automaton method",
+      "link": "https://link.springer.com/article/10.1007/s40843-023-2706-x",
+      "description": "Al-Si alloys offer distinctive advantages including light weight, high strength, and excellent formability. These attributes enable the production of...",
       "type": "Article"
     },
     {
       "is_access": false,
-      "title": "Numerical simulation of solidified microstructure of ternary Al-Si-Mg alloy using an improved cellular automaton method",
-      "link": "https://link.springer.com/article/10.1007/s40843-023-2706-x",
-      "description": "Al-Si alloys offer distinctive advantages including light weight, high strength, and excellent formability. These attributes enable the production of...",
+      "title": "Some Effects of Low-Frequency Vibration During Solidification of Fe–28Mn–12Al–0.9Si–1.4C Steel As-Cast Ingots",
+      "link": "https://link.springer.com/article/10.1007/s40962-025-01555-1",
+      "description": "The paper presents the results of experimental studies, devoted to investigation of the vibration treatment influence on the defects and structure...",
       "type": "Article"
     },
     {
@@ -710,7 +851,148 @@
       "type": "Article"
     }
   ],
-  "7": [],
+  "7": [
+    {
+      "is_access": false,
+      "title": "The Effect on the Electrical Conductivity of Doping Cerium, Cerium Oxide, and Lanthanum (37.5%)-Tellurium (62.5%) on Aluminum Alloy 1350",
+      "link": "https://link.springer.com/chapter/10.1007/978-981-97-4080-2_7",
+      "description": "Doping cerium, cerium oxide, and lanthanum-tellurium on aluminum alloy through the process of sand - casting can modify the alloy's electrical...",
+      "type": "Conference paper"
+    },
+    {
+      "is_access": false,
+      "title": "Impact of Fe Intermetallic and Externally Solidified Crystals on the Tensile Ductility of HPVDC Thin-Walled Components",
+      "link": "https://link.springer.com/article/10.1007/s40962-025-01606-7",
+      "description": "This study investigates the microstructural characteristics and fracture behavior of the AlSi10MnMg structural alloy under different processing...",
+      "type": "Article"
+    },
+    {
+      "is_access": false,
+      "title": "On the Development of Equiaxed Microstructures in High-Entropy Superalloys and Their Impact on High-Temperature Oxidation Behavior",
+      "link": "https://link.springer.com/article/10.1007/s44210-024-00045-z",
+      "description": "High-Entropy Alloys (HEAs) are an exciting area of research for metallurgists seeking to push through the temperature limits of the traditional...",
+      "type": "Article"
+    },
+    {
+      "is_access": false,
+      "title": "Comparative analysis of phase composition and heat resistance of piston silumin and experimental alloy Al4Cu2Mn0·5Ca0·2Zr (wt. %)",
+      "link": "https://link.springer.com/article/10.1007/s11015-024-01793-4",
+      "description": "Based upon the Al-Cu-Mn system, aluminum hypoeutectic heat resistant aluminum alloy of the Al4Cu2Mn0.5Ca0.2Zr (wt. %) (P2) composition is developed,...",
+      "type": "Article"
+    },
+    {
+      "is_access": false,
+      "title": "Scandium in Commercial Wrought Aluminum Alloys",
+      "link": "https://link.springer.com/chapter/10.1007/978-3-031-31867-2_15",
+      "description": "This chapter reviews commercial applications for scandium (Sc)-containing wrought aluminum (Al) alloys. Advantages from alloying Sc with aluminum Al...",
+      "type": "Chapter"
+    },
+    {
+      "is_access": true,
+      "title": "Effect of compositions and hardness on wheel-rail contact analysis and wear behavior of wheel materials using finite element method: a case study of Addis Ababa light rail transit",
+      "link": "https://link.springer.com/article/10.1007/s43939-025-00243-5",
+      "description": "Contact stress arises in the wheel-rail because of the load imposed on the wheel. This stress on wheel leads to wear, distortion, and damage,...",
+      "type": "Article"
+    },
+    {
+      "is_access": false,
+      "title": "Unveiling the Refinement Effect of the Coarse Fe-Rich Phase in Al-Si-Fe Alloy under Controlled Diffusion Solidification Treatments",
+      "link": "https://link.springer.com/article/10.1007/s11665-024-09775-y",
+      "description": "In this paper, the controlled diffusion solidification (CDS) technology is utilized to enhance the mechanical properties of alloys with high Fe...",
+      "type": "Article"
+    },
+    {
+      "is_access": false,
+      "title": "Metalcasting Industry Research",
+      "link": "https://link.springer.com/article/10.1007/s40962-025-01631-6",
+      "description": "in International Journal of Metalcasting",
+      "type": "Article"
+    },
+    {
+      "is_access": false,
+      "title": "Metalcasting Industry Research",
+      "link": "https://link.springer.com/article/10.1007/s40962-025-01566-y",
+      "description": "in International Journal of Metalcasting",
+      "type": "Article"
+    },
+    {
+      "is_access": false,
+      "title": "Microhardness of Dispersion-Hardened Aluminum Matrix Alloys of Different Chemical Composition",
+      "link": "https://link.springer.com/article/10.3103/S1068798X25701540",
+      "description": "Experimental dispersion-hardened aluminum matrix alloys obtained by internal oxidation are studied. The influence of the content of various...",
+      "type": "Article"
+    },
+    {
+      "is_access": false,
+      "title": "A Recent Innovation in Stir-Cast Aluminium Metal Matrix Composites to Improve Mechanical and Wear Properties with Potential Applications: A Review",
+      "link": "https://link.springer.com/article/10.1007/s11837-025-07570-1",
+      "description": "The demand for superior-performance, low-cost materials has prompted analysts worldwide to move their concentration from monolithic to composite...",
+      "type": "Article"
+    },
+    {
+      "is_access": false,
+      "title": "Metalcasting Industry Research",
+      "link": "https://link.springer.com/article/10.1007/s40962-025-01786-2",
+      "description": "in International Journal of Metalcasting",
+      "type": "Article"
+    },
+    {
+      "is_access": false,
+      "title": "Effect of Rare Earth Element La on Hot Tearing Susceptibility and Fluidity of AZ80 Magnesium Alloy",
+      "link": "https://link.springer.com/article/10.1007/s40962-025-01777-3",
+      "description": "Magnesium alloys are lightweight high-performance alloys. However, they are limited in practical engineering applications due to their susceptibility...",
+      "type": "Article"
+    },
+    {
+      "is_access": false,
+      "title": "Metalcasting Industry Research",
+      "link": "https://link.springer.com/article/10.1007/s40962-025-01737-x",
+      "description": "in International Journal of Metalcasting",
+      "type": "Article"
+    },
+    {
+      "is_access": false,
+      "title": "Metalcasting Industry Research",
+      "link": "https://link.springer.com/article/10.1007/s40962-025-01689-2",
+      "description": "in International Journal of Metalcasting",
+      "type": "Article"
+    },
+    {
+      "is_access": false,
+      "title": "Effect of Fe Addition on the Microstructure, Corrosion Behavior, and Mechanical Properties of Zn-3.5Al-1.5Cu Alloy for Biomedical Application",
+      "link": "https://link.springer.com/article/10.1007/s11665-025-12580-w",
+      "description": "Zn-3.5Al-1.5Cu-xFe (x = 0,0.1,0.3) alloys were prepared by metal mold casting. The effect of Fe addition on the microstructure, corrosion behavior in...",
+      "type": "Article"
+    },
+    {
+      "is_access": false,
+      "title": "Applications of unified phase-field methods to designing microstructures and mechanical properties of alloys",
+      "link": "https://link.springer.com/article/10.1557/s43577-024-00720-x",
+      "description": "This article highlights the applications of integrated unified phase-field methods in guiding the design of high-performance engineering alloys and...",
+      "type": "Article"
+    },
+    {
+      "is_access": false,
+      "title": "Processing of Cobalt-Chrome Dental Alloys",
+      "link": "https://link.springer.com/chapter/10.1007/978-3-031-47351-7_3",
+      "description": "Cobalt–Chromium (Co–Cr) alloys are used in dental prosthetics for removable partial denture restorations, complete cast metal-ceramic restorations,...",
+      "type": "Chapter"
+    },
+    {
+      "is_access": false,
+      "title": "Thermodynamics of Solidification",
+      "link": "https://link.springer.com/chapter/10.1007/978-3-031-70634-9_4",
+      "description": "This chapter delves into the science behind producing high-quality metal castings for engineering applications. It focuses on the interplay between...",
+      "type": "Chapter"
+    },
+    {
+      "is_access": false,
+      "title": "Effect of Zinc Addition on the Microstructure and Properties of Al–Si–Cu–Mg Cast Alloy",
+      "link": "https://link.springer.com/article/10.1007/s12666-024-03389-7",
+      "description": "The addition of zinc (Zn) to a hypoeutectic Al–Si–Cu–Mg alloy leads to an improvement in grain size. It also causes a transformation of the...",
+      "type": "Article"
+    }
+  ],
   "8": [
     {
       "is_access": false,
@@ -762,13 +1044,6 @@
       "type": "Chapter"
     },
     {
-      "is_access": true,
-      "title": "A Review of Dendritic Austenite in Cast Irons",
-      "link": "https://link.springer.com/article/10.1007/s40962-023-01239-8",
-      "description": "Solidification of cast irons usually involves dendritic growth of austenite. This article presents a literature survey about the dendrites in cast...",
-      "type": "Article"
-    },
-    {
       "is_access": false,
       "title": "Impact of Parameters on the Wear Characteristics of Aluminium Alloy-Zirconium Carbide Metal Matrix Composites",
       "link": "https://link.springer.com/article/10.1007/s40033-025-00929-3",
@@ -776,10 +1051,10 @@
       "type": "Article"
     },
     {
-      "is_access": false,
-      "title": "Effects of Trace Antimony and Heat Treatment on the Microstructures and Wear Properties of 4Y32-T6 Wrought Alloys",
-      "link": "https://link.springer.com/article/10.1007/s11665-025-11929-5",
-      "description": "Through microstructure analysis, this study aims to explore effects of antimony (Sb) modification, solid solution, and aging treatments on the...",
+      "is_access": true,
+      "title": "A Review of Dendritic Austenite in Cast Irons",
+      "link": "https://link.springer.com/article/10.1007/s40962-023-01239-8",
+      "description": "Solidification of cast irons usually involves dendritic growth of austenite. This article presents a literature survey about the dendrites in cast...",
       "type": "Article"
     },
     {
@@ -791,9 +1066,23 @@
     },
     {
       "is_access": false,
+      "title": "Effects of Trace Antimony and Heat Treatment on the Microstructures and Wear Properties of 4Y32-T6 Wrought Alloys",
+      "link": "https://link.springer.com/article/10.1007/s11665-025-11929-5",
+      "description": "Through microstructure analysis, this study aims to explore effects of antimony (Sb) modification, solid solution, and aging treatments on the...",
+      "type": "Article"
+    },
+    {
+      "is_access": false,
       "title": "Temperature-Dependent Material Property Databases for Nickel-Aluminum Bronze, HY-80 and HY-100 Steels",
       "link": "https://link.springer.com/article/10.1007/s40192-024-00386-y",
       "description": "To address residual stress and distortion issues in castings, weldments and additive manufacturing of marine structures, Integrated Computational...",
+      "type": "Article"
+    },
+    {
+      "is_access": false,
+      "title": "SVR-MTS prediction approach for shrinkage defects",
+      "link": "https://link.springer.com/article/10.1007/s00170-024-14958-x",
+      "description": "This study presents a quantitative prediction model with an optimal dimensional reduction technique for the first time in the context of shrinkage...",
       "type": "Article"
     },
     {
@@ -805,24 +1094,24 @@
     },
     {
       "is_access": false,
-      "title": "Unveiling the Potential of Age Hardened Aluminum Alloys: Strengthening Solutions for Engineering Challenges",
-      "link": "https://link.springer.com/chapter/10.1007/978-981-97-2104-7_15",
-      "description": "Aluminium alloys are commonly age-hardened to improve their characteristics, and hence their suitability for usage in a wide range of engineering...",
-      "type": "Chapter"
-    },
-    {
-      "is_access": false,
-      "title": "SVR-MTS prediction approach for shrinkage defects",
-      "link": "https://link.springer.com/article/10.1007/s00170-024-14958-x",
-      "description": "This study presents a quantitative prediction model with an optimal dimensional reduction technique for the first time in the context of shrinkage...",
-      "type": "Article"
-    },
-    {
-      "is_access": false,
       "title": "Mats Hillert’s Invaluable Contributions to Cast Irons",
       "link": "https://link.springer.com/article/10.1007/s11669-024-01125-8",
       "description": "The microstructures and properties of foundry alloys designated by the generic term “cast irons” are highly diverse, even if we limit ourselves to...",
       "type": "Article"
+    },
+    {
+      "is_access": false,
+      "title": "Manufacturing, Processing and Uses of Superaustenitic Stainless Steels",
+      "link": "https://link.springer.com/chapter/10.1007/978-3-031-68744-0_4",
+      "description": "The final building block related to the understanding of superaustenitic stainless steels concerns the techniques by which these materials can be...",
+      "type": "Chapter"
+    },
+    {
+      "is_access": false,
+      "title": "Unveiling the Potential of Age Hardened Aluminum Alloys: Strengthening Solutions for Engineering Challenges",
+      "link": "https://link.springer.com/chapter/10.1007/978-981-97-2104-7_15",
+      "description": "Aluminium alloys are commonly age-hardened to improve their characteristics, and hence their suitability for usage in a wide range of engineering...",
+      "type": "Chapter"
     },
     {
       "is_access": false,
@@ -844,16 +1133,16 @@
       "link": "https://link.springer.com/article/10.1007/s12520-025-02165-y",
       "description": "For the first time, the three bronze doors of the Lateran Baptistery and Cloister of the Archbasilica of St John Lateran in Rome have been studied to...",
       "type": "Article"
-    },
+    }
+  ],
+  "9": [
     {
       "is_access": false,
       "title": "Manufacturing, Processing and Uses of Superaustenitic Stainless Steels",
       "link": "https://link.springer.com/chapter/10.1007/978-3-031-68744-0_4",
       "description": "The final building block related to the understanding of superaustenitic stainless steels concerns the techniques by which these materials can be...",
       "type": "Chapter"
-    }
-  ],
-  "9": [
+    },
     {
       "is_access": false,
       "title": "Optimization of Tribological parameter of ZK60/12 Wt% ZrB2 composite through Taguchi approach",
@@ -869,27 +1158,6 @@
       "type": "Article"
     },
     {
-      "is_access": false,
-      "title": "Influence of Secondary Phase on Elastic and Acoustic Characteristics of Magnesium Alloys of the Mg–Zn–Y–Gd System",
-      "link": "https://link.springer.com/article/10.1134/S1067821225600061",
-      "description": "The microstructural, phase, acoustic, and elastic properties of nine cast magnesium alloys with an LPSO structure (X phase) were studied...",
-      "type": "Article"
-    },
-    {
-      "is_access": false,
-      "title": "Chronological Development in Microwave Heating Technology: Design and Applications",
-      "link": "https://link.springer.com/chapter/10.1007/978-981-97-2772-8_3",
-      "description": "The present chapter will concentrate on the many development methods that have been created for the processing of materials ever since the...",
-      "type": "Chapter"
-    },
-    {
-      "is_access": false,
-      "title": "Microstructural characterization, tribological and corrosion behavior of AA7075 -TiC composites",
-      "link": "https://link.springer.com/article/10.1007/s41230-024-3070-5",
-      "description": "Aluminum alloys are the potential materials in the automobile and aerospace sectors due to their lower density, easy forming and excellent corrosion...",
-      "type": "Article"
-    },
-    {
       "is_access": true,
       "title": "Fabrication, mechanical properties, and microstructural analysis of Al/SiC-bagasse ash hybrid composites",
       "link": "https://link.springer.com/article/10.1007/s42452-025-08031-9",
@@ -897,11 +1165,11 @@
       "type": "Article"
     },
     {
-      "is_access": true,
-      "title": "Ceramic Filter Materials and Filter Structures with Active and Reactive Functional Pores for the Aluminum Melt Filtration",
-      "link": "https://link.springer.com/chapter/10.1007/978-3-031-40930-1_3",
-      "description": "The application of ceramic foam filters is state of the art in the casting of aluminum melt. Despite their industrial use since the 1960s, the...",
-      "type": "Chapter"
+      "is_access": false,
+      "title": "Microstructural characterization, tribological and corrosion behavior of AA7075 -TiC composites",
+      "link": "https://link.springer.com/article/10.1007/s41230-024-3070-5",
+      "description": "Aluminum alloys are the potential materials in the automobile and aerospace sectors due to their lower density, easy forming and excellent corrosion...",
+      "type": "Article"
     },
     {
       "is_access": true,
@@ -918,18 +1186,25 @@
       "type": "Article"
     },
     {
+      "is_access": true,
+      "title": "Ceramic Filter Materials and Filter Structures with Active and Reactive Functional Pores for the Aluminum Melt Filtration",
+      "link": "https://link.springer.com/chapter/10.1007/978-3-031-40930-1_3",
+      "description": "The application of ceramic foam filters is state of the art in the casting of aluminum melt. Despite their industrial use since the 1960s, the...",
+      "type": "Chapter"
+    },
+    {
+      "is_access": false,
+      "title": "Chronological Development in Microwave Heating Technology: Design and Applications",
+      "link": "https://link.springer.com/chapter/10.1007/978-981-97-2772-8_3",
+      "description": "The present chapter will concentrate on the many development methods that have been created for the processing of materials ever since the...",
+      "type": "Chapter"
+    },
+    {
       "is_access": false,
       "title": "Enhancement of Elastic Modulus by TiC Reinforcement in Low-Density Steel",
       "link": "https://link.springer.com/article/10.1007/s12666-024-03452-3",
       "description": "The present study investigates the effect of in situ reinforced TiC on the microstructure, density, and tensile properties of austenitic low-density...",
       "type": "Article"
-    },
-    {
-      "is_access": false,
-      "title": "Investigation of Microstructural, Hardness, and Tensile Response of Stir Cast AA7075 Composite",
-      "link": "https://link.springer.com/chapter/10.1007/978-981-97-4947-8_1",
-      "description": "The current investigation focuses on evolution of the microstructural, hardness, and tensile properties of cast MMCs using AA7075 alloy reinforced...",
-      "type": "Conference paper"
     },
     {
       "is_access": false,
@@ -944,6 +1219,13 @@
       "link": "https://link.springer.com/article/10.1007/s00170-024-13123-8",
       "description": "Steel matrix composites are widely used in automotive, aerospace, wear, and cutting applications due to their superior mechanical properties, ease of...",
       "type": "Article"
+    },
+    {
+      "is_access": false,
+      "title": "Investigation of Microstructural, Hardness, and Tensile Response of Stir Cast AA7075 Composite",
+      "link": "https://link.springer.com/chapter/10.1007/978-981-97-4947-8_1",
+      "description": "The current investigation focuses on evolution of the microstructural, hardness, and tensile properties of cast MMCs using AA7075 alloy reinforced...",
+      "type": "Conference paper"
     },
     {
       "is_access": false,
@@ -997,10 +1279,10 @@
   ],
   "10": [
     {
-      "is_access": false,
-      "title": "Steel Production",
-      "link": "https://link.springer.com/chapter/10.1007/978-3-031-63709-4_3",
-      "description": "Blast furnaceBlast furnace (pig ironPig iron production by reduction of iron ore).",
+      "is_access": true,
+      "title": "Characterization of Heat Transport and Diffusion Processes During Metal Melt Filtration",
+      "link": "https://link.springer.com/chapter/10.1007/978-3-031-40930-1_14",
+      "description": "This chapter contains a summary of thermodynamic investigations of ceramic filters, metal melts and their interaction, which can serve as a basis for...",
       "type": "Chapter"
     },
     {

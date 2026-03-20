@@ -1,6 +1,7 @@
 from src.springer.scrapping_service import ScrappingService
 from src.db.db_service import db_service
-from src.springer.scrapping_service import PageInfo
+import time
+
 
 def main():
     search_dict = {
@@ -11,13 +12,12 @@ def main():
         "sortBy":"relevance",
         "openAccess": "false"
     }
-
+    start = time.time()
     scrapping_service = ScrappingService(search_dict)
     
-    def print_parsed_page(page: PageInfo):
-        print(f"[+] {page['current']} / {page['total']}")
-
-    articles = scrapping_service.start(progress_parsing_page_cb=print_parsed_page)
+    articles = scrapping_service.start()
+    end = time.time()
+    print(f"Время выполнения: {end - start:.2f} секунд")
     db_service.write(articles)
                      
 if __name__ == "__main__":
