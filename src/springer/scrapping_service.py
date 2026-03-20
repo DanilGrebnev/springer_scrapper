@@ -85,7 +85,8 @@ class ScrappingService:
         
         return list(range(pages_amount[0], pages_amount[-1] + 1)) if len(pages_amount) > 1 else pages_amount 
 
-    def _collect_articles(self, _driver) -> list[ArticleCard]:
+    # Сбор статей с 1 страницы
+    def _collect_articles_from_page(self, _driver) -> list[ArticleCard]:
         '''Собирает все карточки статей с текущей открытой страницы.
         Для каждой карточки извлекает: title, link, description, type и is_access
         (есть ли полный доступ). Возвращает список словарей ArticleCard.'''
@@ -157,8 +158,9 @@ class ScrappingService:
     def set_search_params(self, search_params):
         '''Перезаписывает параметры поиска (query, page, даты, сортировка и т.д.)'''
         self._search_params = search_params
-    
+     
     def _divide_pages(self, pages) -> list[list]:
+        '''Возвращает массив разбитый на подмассива страниц'''
         return [page_parts.tolist() for page_parts in np.array_split(pages, 3) if page_parts.tolist()]
 
     def _scrapping_articles(self, pages_range: list[int]) -> dict:
@@ -195,7 +197,7 @@ class ScrappingService:
                         accept_cookies = (i == 0)
                     )
                     
-                    articles = self._collect_articles(_driver=driver_local)
+                    articles = self._collect_articles_from_page(_driver=driver_local)
                     result[page] = articles
                 except Exception as ex:
                     print(f"Ошибка в сборе статей на странице {page}: {ex}")
@@ -206,14 +208,9 @@ class ScrappingService:
             driver_local.quit()
 
         return result
-        
-    def start(self, progress_parsing_page_cb: Optional[Callable[[PageInfo], None]] = None):
-        '''Точка входа. Весь процесс:
-        1) Создаёт драйвер, определяет сколько страниц в результатах, закрывает драйвер.
-        2) Делит страницы пополам через _pages_divide.
-        3) Запускает 2 потока (ThreadPoolExecutor), каждый скрапит свою половину
-           страниц в собственном браузере (_scrapping_articles).
-        4) Собирает результаты из обоих потоков в один dict и возвращает.'''
+    
+    # Основная функция, запускающая всё остальное
+    def _start_multythreads_scrapping(self):
         driver = driver_factory.create()
         pages_range = self._get_pages_range(driver)
         driver.quit()
@@ -232,3 +229,6 @@ class ScrappingService:
                articles_result.update(future.result())
             
         return  articles_result
+        
+    def start(self):
+       return self._start_multythreads_scrapping()
