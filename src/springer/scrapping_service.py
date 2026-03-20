@@ -147,13 +147,8 @@ class ScrappingService:
         
         # Получаем контейнер с текущими статьями
         card_containers_list = _driver.find_elements(*ARTICLE_SELECTOR)
-        # Статьи с текущей страницы
-        atrticles_on_current_page = []
         
-        # Собираем каждую статью на текущей странице
-        for card_container in card_containers_list:
-            atrticles_on_current_page.append(_get_articles(card_container))
-        return atrticles_on_current_page
+        return [_get_articles(card_container) for card_container in card_containers_list]
 
     def set_search_params(self, search_params):
         '''Перезаписывает параметры поиска (query, page, даты, сортировка и т.д.)'''
