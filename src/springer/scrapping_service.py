@@ -158,7 +158,7 @@ class ScrappingService:
         '''Возвращает массив разбитый на подмассива страниц'''
         return [page_parts.tolist() for page_parts in np.array_split(pages, 3) if page_parts.tolist()]
 
-    def _scrapping_articles(self, pages_range: list[int]) -> dict:
+    def _scrapping_articles_from_all_pages(self, pages_range: list[int]) -> dict:
         """
             Собирает статьи со страницы.
 
@@ -252,7 +252,7 @@ class ScrappingService:
         articles_result = {}
         
         with ThreadPoolExecutor(max_workers=len(divided_pages)) as executor:
-            futures = [executor.submit(self._scrapping_articles, pages) for pages in divided_pages]
+            futures = [executor.submit(self._scrapping_articles_from_all_pages, pages) for pages in divided_pages]
             
             for future in futures:
                articles_result.update(future.result())
