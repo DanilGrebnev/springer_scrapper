@@ -2,13 +2,12 @@ from src.springer.scrapping_service import ScrappingService
 from src.db.db_service import db_service
 import time
 
-
 def main():
     search_dict = {
         "query":"surface alloying of iron castings in a casting mold",
         "page":"",
-        "dateFrom":"2024",
-        "dateTo":"2025", 
+        "dateFrom":"2020",
+        "dateTo":"2022", 
         "sortBy":"relevance",
         "openAccess": "false"
     }
@@ -22,7 +21,7 @@ def main():
     if not articles:
         return
     
-    db_service.write(articles)
+    db_service.write(articles, file_name=f'articles_{search_dict['dateFrom']}-{search_dict['dateTo']}.json')
                      
 if __name__ == "__main__":
     main()

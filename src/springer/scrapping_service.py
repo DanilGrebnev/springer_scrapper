@@ -17,13 +17,15 @@ class PageInfo(TypedDict):
 
 ArticleCard = TypedDict("ArticleCard", 
     {
-        "id":str,
+        "id": str,
         "is_access": bool, 
         "title": str, 
         "link": str, 
         "description": str,
-        "type": str,
-        "abstract": str
+        "publications_type": str,
+        "abstract": str,
+        "authors": str,
+        "published": str
     })
 
 class ScrappingService:
@@ -114,23 +116,41 @@ class ScrappingService:
             # Тип и доступ к статье
             MetaInfo = TypedDict("MetaInfo", 
                 {
-                        "is_access": bool, 
-                        "type": str
+                    "is_access": bool, 
+                    "publications_type": str,
+                    "authors": str,
+                    "published": str
                 })
             
             def get_meta_info(card_container: WebElement) -> MetaInfo:
-                type = card_container.find_element(By.CLASS_NAME, 'c-meta__type').text
+                publications_type = card_container.find_element(By.CLASS_NAME, 'c-meta__type').text
 
                 try:
                     card_container.find_element(By.CLASS_NAME, 'app-entitlement__icon--full-access')
                     is_access = True
-                except:
+                except Exception:
                     is_access = False
+
+                authors = ""
+                try:
+                    el = card_container.find_element(By.CSS_SELECTOR, "[data-test='authors']")
+                    authors = el.text
+                except Exception:
+                    pass
+
+                published = ""
+                try:
+                    el = card_container.find_element(By.CSS_SELECTOR, "[data-test='published']")
+                    published = el.text
+                except Exception:
+                    pass
 
                 return {
                     "is_access": is_access, 
-                    "type":type
-                    }
+                    "publications_type": publications_type,
+                    "authors": authors,
+                    "published": published
+                }
             def get_description_from_article(container: WebElement) -> str:
                 try:
                     return container.find_element(By.CLASS_NAME, 'app-card-open__description').find_element(By.TAG_NAME, 'p').text
@@ -208,8 +228,9 @@ class ScrappingService:
                     "title": str, 
                     "link": str, 
                     "description": str,
-                    "type": str]}
-                }
+                    "publications_type": str,
+                    "authors": str,
+                    "published": str}]}
         """
         if not pages_range:
             return {}
@@ -297,7 +318,9 @@ class ScrappingService:
                     - title (str): Название статьи
                     - link (str): URL ссылка на статью
                     - description (str): Краткое описание/аннотация статьи
-                    - type (str): Тип публикации (например, "Article", "Review" и т.д.)
+                    - publications_type (str): Тип публикации (например, "Article", "Review" и т.д.)
+                    - authors (str): Авторы статьи
+                    - published (str): Дата публикации
 
             Returns:
                 None: В случае отсутствия страниц или ошибки при получении диапазона страниц
@@ -313,7 +336,9 @@ class ScrappingService:
                             "link": "https://link.springer.com/article/10.1007/s42243-025-01598-y",
                             "description": "Ductile iron represents an optimal solution...",
                             "is_access": false,
-                            "type": "Article"
+                            "publications_type": "Article",
+                            "authors": "...",
+                            "published": "22 August 2025"
                         },
                     ],
                     "2": [...]
