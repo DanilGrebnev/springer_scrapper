@@ -18,6 +18,10 @@ def main():
     articles = scrapping_service.start()
     end = time.time()
     print(f"Время выполнения: {end - start:.2f} секунд")
+    
+    if not articles:
+        return
+    
     db_service.write(articles)
                      
 if __name__ == "__main__":

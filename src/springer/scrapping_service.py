@@ -150,14 +150,28 @@ class ScrappingService:
         
         return articles_list
         
-
     def set_search_params(self, search_params):
         '''Перезаписывает параметры поиска (query, page, даты, сортировка и т.д.)'''
         self._search_params = search_params
      
-    def _divide_pages(self, pages) -> list[list]:
-        '''Возвращает массив разбитый на подмассива страниц'''
-        return [page_parts.tolist() for page_parts in np.array_split(pages, 3) if page_parts.tolist()]
+    def _divide_pages(self, pages, split:int = 1) -> list[list]:
+        """
+            Разбивает список страниц на указанное количество подмассивов.
+
+            Args:
+                pages (list): Исходный список страниц для разбиения
+                split (int, optional): Количество частей, на которые нужно разбить список. 
+                                      По умолчанию 1.
+
+            Returns:
+                list[list]: Список, содержащий подмассивы страниц. Каждый подмассив - 
+                           это часть исходного списка. Пустые подмассивы отфильтровываются.
+
+            Example:
+                >>> _divide_pages([1, 2, 3, 4, 5], split=2)
+                [[1, 2, 3], [4, 5]]
+            """
+        return [page_parts.tolist() for page_parts in np.array_split(pages, split) if page_parts.tolist()]
 
     def _scrapping_articles_from_all_pages(self, pages_range: list[int]) -> dict:
         """
@@ -239,12 +253,64 @@ class ScrappingService:
                 break
             last_height = new_height
             
-    # Основная функция, запускающая всё остальное
-    def _start_multythreads_scrapping(self):
+    # Основная функция, запускающая мультипоточное выполнение
+    def _start_multythreads_scrapping(self, threads_amount:int=3) -> dict[str, list[ArticleCard]] | None:
+        """
+            Запускает многопоточный сбор статей со всех страниц.
+
+            Метод выполняет следующие шаги:
+            1. Получает общий список страниц для парсинга
+            2. Разбивает список страниц на части согласно количеству потоков
+            3. Запускает параллельный сбор статей с каждой группы страниц
+            4. Объединяет результаты из всех потоков
+
+            Args:
+                threads_amount (int, optional): Количество потоков для параллельного выполнения.
+                                               По умолчанию 3.
+
+            Returns:
+                dict[str, list[ArticleCard]]: Словарь, где ключи - номера страниц (в виде строк),
+                                              значения - списки объектов статей типа ArticleCard.
+
+                ArticleCard содержит следующие поля:
+                    - id (str): Идентификатор статьи в формате "{page}.{index}"
+                    - is_access (bool): Доступна ли статья для чтения
+                    - title (str): Название статьи
+                    - link (str): URL ссылка на статью
+                    - description (str): Краткое описание/аннотация статьи
+                    - type (str): Тип публикации (например, "Article", "Review" и т.д.)
+
+            Returns:
+                None: В случае отсутствия страниц или ошибки при получении диапазона страниц
+
+            Example:
+                >>> result = scraper._start_multythreads_scrapping(threads_amount=4)
+                >>> print(result)
+                {
+                    "1": [
+                        {
+                            "id": "1.1",
+                            "title": "Microstructure in non-standard heavy section...",
+                            "link": "https://link.springer.com/article/10.1007/s42243-025-01598-y",
+                            "description": "Ductile iron represents an optimal solution...",
+                            "is_access": false,
+                            "type": "Article"
+                        },
+                    ],
+                    "2": [...]
+                }
+
+            Note:
+                - Каждый поток создает свой экземпляр WebDriver
+                - При возникновении ошибки на отдельной странице, она логируется и сбор продолжается
+                - Результаты всех потоков объединяются в единый словарь
+                - Ключи в результирующем словаре - строковые представления номеров страниц
+            """
         driver = driver_factory.create()
         pages_range = self._get_pages_range(driver)
         driver.quit()
-        divided_pages = self._divide_pages(pages_range)
+        
+        divided_pages = self._divide_pages(pages_range, split=threads_amount)
         
         if not divided_pages:
             print(f"Список страниц пустой")
