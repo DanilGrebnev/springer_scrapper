@@ -17,6 +17,7 @@ class PageInfo(TypedDict):
 
 ArticleCard = TypedDict("ArticleCard", 
     {
+        "id":str,
         "is_access": bool, 
         "title": str, 
         "link": str, 
@@ -86,18 +87,21 @@ class ScrappingService:
         return list(range(pages_amount[0], pages_amount[-1] + 1)) if len(pages_amount) > 1 else pages_amount 
 
     # Сбор статей с 1 страницы
-    def _collect_articles_from_page(self, _driver) -> list[ArticleCard]:
+    def _collect_articles_list_from_page(self, _driver, page:int) -> list[ArticleCard]:
         '''Собирает все карточки статей с текущей открытой страницы.
         Для каждой карточки извлекает: title, link, description, type и is_access
         (есть ли полный доступ). Возвращает список словарей ArticleCard.'''
-        def _get_articles(card_container: WebElement) -> ArticleCard:
+        def create_article_id(page, i):
+            return f"{page}.{i + 1}"
+
+        def _get_articles(card_container: WebElement, id) -> ArticleCard:
             # Тип и доступ к статье
             MetaInfo = TypedDict("MetaInfo", 
                 {
                         "is_access": bool, 
                         "type": str
                 })
-
+            
             def get_meta_info(card_container: WebElement) -> MetaInfo:
                 type = card_container.find_element(By.CLASS_NAME, 'c-meta__type').text
 
@@ -117,14 +121,6 @@ class ScrappingService:
                 except:
                     return container.find_element(By.CLASS_NAME, 'app-card-open__description').text    
 
-            card_meta: ArticleCard = {
-                "is_access": False,
-                "title": "",
-                "link": "",
-                "description": "",
-                "type": '' 
-            }
-
             meta_info_result = get_meta_info(card_container)
 
             card_heading: WebElement = card_container.find_element(By.TAG_NAME, 'h3')
@@ -132,12 +128,14 @@ class ScrappingService:
             title = card_heading.find_element(By.TAG_NAME, 'span').text
             link = card_heading.find_element(By.CLASS_NAME, 'app-card-open__link').get_attribute("href")
             description = get_description_from_article(card_container)
-
-            card_meta['is_access'] = meta_info_result['is_access']
-            card_meta['type'] = meta_info_result['type']
-            card_meta['title'] = title
-            card_meta['link'] = link
-            card_meta['description'] = description
+            
+            card_meta: ArticleCard = {
+                "id":id,
+                "title":title,
+                "link":link,
+                "description":description,
+                **meta_info_result
+            }
 
             return card_meta
         
@@ -148,7 +146,10 @@ class ScrappingService:
         # Получаем контейнер с текущими статьями
         card_containers_list = _driver.find_elements(*ARTICLE_SELECTOR)
         
-        return [_get_articles(card_container) for card_container in card_containers_list]
+        articles_list = [_get_articles(card_container, create_article_id(page, i)) for i, card_container in enumerate(card_containers_list)] 
+        
+        return articles_list
+        
 
     def set_search_params(self, search_params):
         '''Перезаписывает параметры поиска (query, page, даты, сортировка и т.д.)'''
@@ -194,7 +195,7 @@ class ScrappingService:
                     
                     self._scroll_slowly(_driver=driver_local)
                     
-                    articles = self._collect_articles_from_page(_driver=driver_local)
+                    articles = self._collect_articles_list_from_page(_driver=driver_local, page=page)
                     
                     result[page] = articles
                 except Exception as ex:
