@@ -22,7 +22,8 @@ ArticleCard = TypedDict("ArticleCard",
         "title": str, 
         "link": str, 
         "description": str,
-        "type": str
+        "type": str,
+        "abstract": str
     })
 
 class ScrappingService:
@@ -86,6 +87,21 @@ class ScrappingService:
         
         return list(range(pages_amount[0], pages_amount[-1] + 1)) if len(pages_amount) > 1 else pages_amount 
 
+    def _collect_abstract(self, _driver, article_link: str) -> str:
+        '''Переходит на страницу статьи и извлекает текст abstract.
+        Возвращает пустую строку, если abstract не найден.'''
+        try:
+            _driver.get(article_link)
+            wait = WebDriverWait(_driver, 5, poll_frequency=1)
+            abstract_section = wait.until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, "#Abs1-content"))
+            )
+            paragraphs = abstract_section.find_elements(By.TAG_NAME, "p")
+            return " ".join(p.text for p in paragraphs)
+        except Exception as ex:
+            print(f"Ошибка сбора abstract для {article_link}: {ex}")
+            return ""
+
     # Сбор статей с 1 страницы
     def _collect_articles_list_from_page(self, _driver, page:int) -> list[ArticleCard]:
         '''Собирает все карточки статей с текущей открытой страницы.
@@ -134,6 +150,7 @@ class ScrappingService:
                 "title":title,
                 "link":link,
                 "description":description,
+                "abstract":"",
                 **meta_info_result
             }
 
@@ -148,6 +165,9 @@ class ScrappingService:
         
         articles_list = [_get_articles(card_container, create_article_id(page, i)) for i, card_container in enumerate(card_containers_list)] 
         
+        for article in articles_list:
+            article["abstract"] = self._collect_abstract(_driver, article["link"])
+
         return articles_list
         
     def set_search_params(self, search_params):
@@ -249,7 +269,6 @@ class ScrappingService:
             # Проверяем, загрузились ли новые элементы
             new_height = _driver.execute_script("return document.body.scrollHeight")
             if new_height == last_height:
-                print(f"Достигнут конец страницы после {i+1} скроллов")
                 break
             last_height = new_height
             

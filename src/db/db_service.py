@@ -12,4 +12,4 @@ class DB_Service:
             file.write(string_data)
 
 
-db_service = DB_Service('db.txt')
+db_service = DB_Service('articles.txt')
