@@ -6,8 +6,8 @@ def main():
     search_dict = {
         "query":"surface alloying of iron castings in a casting mold",
         "page":"",
-        "dateFrom":"2020",
-        "dateTo":"2022", 
+        "dateFrom":"2016",
+        "dateTo":"2017", 
         "sortBy":"relevance",
         "openAccess": "false"
     }
