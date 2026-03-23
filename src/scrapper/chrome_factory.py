@@ -9,7 +9,7 @@ options.add_argument("start-maximized")
 options.add_experimental_option("excludeSwitches", ["enable-automation"])
 options.add_experimental_option('useAutomationExtension', False)
 
-class Driver:
+class ChromeFactory:
     def __init__(self):
        pass
     

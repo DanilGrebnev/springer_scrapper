@@ -1,6 +1,6 @@
 from typing import TypedDict, Callable, Optional
-from src.springer.utils.create_url import create_url
-from src.driver import Driver
+from src.scrapper.utils.create_url import create_url
+from src.scrapper.chrome_factory import ChromeFactory
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebElement
 from selenium.webdriver.support.ui import WebDriverWait
@@ -9,7 +9,7 @@ import time
 from concurrent.futures import ThreadPoolExecutor
 import numpy as np
 
-driver_factory = Driver()
+driver_factory = ChromeFactory()
 
 class PageInfo(TypedDict):
     current: int
