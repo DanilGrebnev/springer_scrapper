@@ -1,22 +1,15 @@
-# driver + chrome
-# version: "3.9"
-
-# services:
-#   chrome:
-#     image: selenium/standalone-chrome:4.18.1
-#     container_name: selenium_chrome
-#     ports:
-#       - "4444:4444"
-#       - "7900:7900"
-#     shm_size: 2gb
-#     environment:
-#       - SE_NODE_MAX_SESSIONS=1
-#       - SE_NODE_OVERRIDE_MAX_SESSIONS=true
-
-# driver only
-version: "3"
-
 services:
+  api:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: springer-api
+    ports:
+      - "${APP_PORT:-8000}:8000"
+    env_file:
+      - ../.env
+    restart: unless-stopped
+
   selenium-chrome:
     image: selenium/standalone-chrome:latest
     container_name: selenium-chrome
