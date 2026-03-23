@@ -11,4 +11,5 @@ if __name__ == "__main__":
         host=config.host,
         port=config.port,
         reload=config.debug,
+        reload_dirs=["src"] if config.debug else None,
     )

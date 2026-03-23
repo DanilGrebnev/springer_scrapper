@@ -1,1 +1,1 @@
-from src.routes import health
+from src.routes import health, article_search
