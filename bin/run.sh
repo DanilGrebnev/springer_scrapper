@@ -1,4 +1,5 @@
 #!/bin/bash
+cd "$(dirname "$0")/.."
 
 VENV_DIR=".venv"
 REQ_DIR="requirements"
