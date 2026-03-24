@@ -13,5 +13,9 @@ venv
 # Environment
 .env
 
+# SQLite databases
+*.sqlite3
+*.db
+
 # Results
 results/

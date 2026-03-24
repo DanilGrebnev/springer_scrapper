@@ -4,5 +4,4 @@ from src.admin.models import Admin
 
 login_provider = UsernamePasswordProvider(
     admin_model=Admin,
-    enable_captcha=False,
 )

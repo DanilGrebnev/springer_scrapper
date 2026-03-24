@@ -10,6 +10,8 @@ RUN pip install --no-cache-dir uv \
 
 COPY . .
 
+RUN chmod +x docker/entrypoint.sh
+
 EXPOSE 8000
 
-CMD ["uv", "run", "--project", "requirements", "python", "main.py"]
+ENTRYPOINT ["docker/entrypoint.sh"]

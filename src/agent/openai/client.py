@@ -27,7 +27,7 @@ class OpenAIClient(AIClient):
             self._client = None
             logger.info("OpenAI клиент закрыт")
 
-    def _send_to_provider(self, system_prompt: str, articles_json: str) -> str:
+    def _send_to_provider(self, system_prompt: str, articles_json: str) -> tuple[str, dict, str]:
         if self._client is None:
             raise RuntimeError("Agent not created. Call create_agent() first.")
 
@@ -40,10 +40,17 @@ class OpenAIClient(AIClient):
             ],
         )
 
-        return response.choices[0].message.content or ""
+        content = response.choices[0].message.content or ""
+        usage = {}
+        if response.usage:
+            usage = {
+                "prompt_tokens": response.usage.prompt_tokens or 0,
+                "completion_tokens": response.usage.completion_tokens or 0,
+                "total_tokens": response.usage.total_tokens or 0,
+            }
+        return content, usage, response.model or self._model
 
     def test_connection(self) -> str:
-        """Простой тестовый запрос для проверки доступа к API."""
         if self._client is None:
             raise RuntimeError("Agent not created. Call create_agent() first.")
 

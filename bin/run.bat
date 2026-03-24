@@ -1,20 +1,26 @@
 @echo off
 cd /d "%~dp0.."
 
-if not exist venv (
-    echo Creating virtual environment...
-    python -m venv venv
+uv --version >nul 2>&1 || (
+    echo Installing uv...
+    pip install --quiet uv 2>nul
 )
 
-call venv\Scripts\activate.bat
-
 echo Syncing dependencies...
-pip install --quiet requirements\
+cd requirements && uv sync && cd ..
 
 if not exist .env (
     copy .env.example .env
     echo .env created from .env.example
 )
 
-python main.py
+echo Checking database migrations...
+uv run --project requirements python scripts\migrate.py
+if errorlevel 1 (
+    echo Migration check failed!
+    pause
+    exit /b 1
+)
+
+uv run --project requirements python main.py
 pause

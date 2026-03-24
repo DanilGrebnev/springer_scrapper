@@ -25,10 +25,20 @@ class AIClient(ABC):
         ...
 
     @abstractmethod
-    def _send_to_provider(self, system_prompt: str, articles_json: str) -> str:
+    def _send_to_provider(self, system_prompt: str, articles_json: str) -> tuple[str, dict, str]:
+        """Возвращает (content, usage_dict, model_name).
+
+        usage_dict: {"prompt_tokens": int, "completion_tokens": int, "total_tokens": int}
+        """
         ...
 
-    def filter_article(self, articles: dict, context: dict) -> dict:
+    def filter_article(self, articles: dict, context: dict) -> tuple[dict, dict, str]:
+        """Возвращает (response_dict, total_usage, model_name).
+
+        response_dict: {high_match: [...], medium_match: [...], low_match: [...]}
+        total_usage: {"prompt_tokens": int, "completion_tokens": int, "total_tokens": int}
+        model_name: строка с именем модели ИИ
+        """
         articles_for_ai = []
         articles_by_id: dict[str, dict] = {}
 
@@ -58,14 +68,14 @@ class AIClient(ABC):
         logger.info("Разбито на %d чанков по %d статей", len(chunks), CHUNK_SIZE)
 
         response: dict[str, list] = {k: [] for k in MATCH_KEYS}
+        total_usage = {"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0}
+        model_name = ""
 
         try:
             self.create_agent()
             executor = get_ai_executor()
 
-            # Отправляем все чанки параллельно через общий пул.
-            # Сохраняем индекс, чтобы результаты мержились в порядке чанков.
-            index_to_future: dict[int, Future[str]] = {
+            index_to_future: dict[int, Future[tuple[str, dict, str]]] = {
                 idx: executor.submit(
                     self._send_to_provider,
                     system_prompt,
@@ -79,9 +89,14 @@ class AIClient(ABC):
             for future in as_completed(index_to_future.values()):
                 idx = next(i for i, f in index_to_future.items() if f is future)
                 try:
-                    raw = future.result()
+                    raw, usage, m_name = future.result()
                     logger.info("Ответ чанка %d получен (%d символов)", idx, len(raw))
                     results[idx] = self._parse_ai_response(raw)
+                    total_usage["prompt_tokens"] += usage.get("prompt_tokens", 0)
+                    total_usage["completion_tokens"] += usage.get("completion_tokens", 0)
+                    total_usage["total_tokens"] += usage.get("total_tokens", 0)
+                    if not model_name:
+                        model_name = m_name
                 except Exception:
                     logger.exception("Ошибка при обработке чанка %d, пропускаю", idx)
                     results[idx] = {}
@@ -101,8 +116,11 @@ class AIClient(ABC):
         logger.info("Итого: %d совпадений (high=%d, medium=%d, low=%d)",
                      total, len(response["high_match"]),
                      len(response["medium_match"]), len(response["low_match"]))
+        logger.info("Использовано токенов: prompt=%d, completion=%d, total=%d",
+                     total_usage["prompt_tokens"], total_usage["completion_tokens"],
+                     total_usage["total_tokens"])
 
-        return response
+        return response, total_usage, model_name
 
     @staticmethod
     def _parse_ai_response(raw: str) -> dict:

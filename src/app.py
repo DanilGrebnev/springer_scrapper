@@ -1,3 +1,5 @@
+import src._compat  # noqa: F401 — aioredis patch, must precede fastapi_admin
+
 import logging
 import os
 from contextlib import asynccontextmanager
@@ -24,6 +26,7 @@ from src import routes
 from src.admin.provider import login_provider
 from src.agent.ai_executor import shutdown_ai_executor
 from src.config import config
+from src.db import TORTOISE_CONFIG, check_db
 
 logging.basicConfig(
     level=logging.INFO,
@@ -31,20 +34,21 @@ logging.basicConfig(
     datefmt="%H:%M:%S",
 )
 
-_ADMIN_DB_URL = os.getenv("ADMIN_DB_URL", "sqlite://admin.db")
 _ADMIN_SECRET_KEY = os.getenv("ADMIN_SECRET_KEY", "changeme-replace-in-production")
 
 
 @asynccontextmanager
 async def _lifespan(app: FastAPI):
+    # Инициализируем fastapi-admin
     redis = fakeredis.FakeAsyncRedis(decode_responses=True)
     await admin_app.configure(
         logo_url="https://preview.tabler.io/static/logo-white.svg",
         favicon_url="https://raw.githubusercontent.com/fastapi-admin/fastapi-admin/dev/images/favicon.png",
         providers=[login_provider],
         redis=redis,
-        secret_key=_ADMIN_SECRET_KEY,
     )
+    # Проверяем доступность БД (Tortoise уже инициализирован через register_tortoise)
+    await check_db()
     yield
     shutdown_ai_executor(wait=True)
 
@@ -71,20 +75,13 @@ def create_app() -> FastAPI:
     app.mount("/admin", admin_app)
 
     app.include_router(routes.health.router)
+    app.include_router(routes.auth.router)
     app.include_router(routes.article_search.router)
     app.include_router(routes.ai_test.router)
 
     register_tortoise(
         app,
-        config={
-            "connections": {"default": _ADMIN_DB_URL},
-            "apps": {
-                "models": {
-                    "models": ["src.admin.models"],
-                    "default_connection": "default",
-                }
-            },
-        },
+        config=TORTOISE_CONFIG,
         generate_schemas=True,
     )
 

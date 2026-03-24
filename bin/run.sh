@@ -1,23 +1,20 @@
 #!/bin/bash
 cd "$(dirname "$0")/.."
 
-VENV_DIR=".venv"
-REQ_DIR="requirements"
-
-if [ ! -d "$VENV_DIR" ]; then
-    echo "Creating virtual environment..."
-    python -m venv "$VENV_DIR"
+if ! command -v uv &>/dev/null; then
+    echo "Installing uv..."
+    pip install --quiet uv 2>/dev/null
 fi
 
-source "$VENV_DIR/bin/activate"
-
 echo "Syncing dependencies..."
-pip install --quiet uv 2>/dev/null
-cd "$REQ_DIR" && uv sync && cd ..
+cd requirements && uv sync && cd ..
 
 if [ ! -f .env ]; then
     cp .env.example .env
     echo ".env created from .env.example"
 fi
 
-python main.py
+echo "Checking database migrations..."
+uv run --project requirements python scripts/migrate.py || { echo "Migration check failed!"; exit 1; }
+
+uv run --project requirements python main.py

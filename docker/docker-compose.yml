@@ -8,10 +8,30 @@ services:
       - "${APP_PORT:-8000}:8000"
     env_file:
       - ../.env
-    volumes:
-      - admin_db:/app/admin_db
     environment:
-      - ADMIN_DB_URL=sqlite:///app/admin_db/admin.db
+      # PostgreSQL для prod (переопределяет любое значение из .env)
+      - DATABASE_URL=postgres://springer:springer@db:5432/springer
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  db:
+    image: postgres:16-alpine
+    container_name: springer-db
+    environment:
+      POSTGRES_USER: springer
+      POSTGRES_PASSWORD: springer
+      POSTGRES_DB: springer
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U springer -d springer"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
     restart: unless-stopped
 
   selenium-chrome:
@@ -25,4 +45,4 @@ services:
       - SE_NODE_OVERRIDE_MAX_SESSIONS=true
 
 volumes:
-  admin_db:
+  pg_data:
