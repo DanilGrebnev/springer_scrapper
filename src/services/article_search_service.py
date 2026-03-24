@@ -9,7 +9,7 @@ def run_article_search(
     theme: str,
     date_from: Optional[int],
     date_to: Optional[int],
-    is_access: bool,
+    open_access: bool,
 ) -> dict:
     search_params = {
         "query": theme,
@@ -17,7 +17,7 @@ def run_article_search(
         "dateFrom": str(date_from) if date_from is not None else "",
         "dateTo": str(date_to) if date_to is not None else "",
         "sortBy": "relevance",
-        "openAccess": "true" if is_access else "false",
+        "openAccess": "true" if open_access else "false",
     }
 
     logger.info("=== [1/3] Параметры запроса к скраперу ===")

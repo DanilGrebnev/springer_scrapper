@@ -1,8 +1,10 @@
 import logging
+from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from src.config import config
 from src import routes
+from src.agent.ai_executor import shutdown_ai_executor
 
 logging.basicConfig(
     level=logging.INFO,
@@ -11,10 +13,17 @@ logging.basicConfig(
 )
 
 
+@asynccontextmanager
+async def _lifespan(app: FastAPI):
+    yield
+    shutdown_ai_executor(wait=True)
+
+
 def create_app() -> FastAPI:
     app = FastAPI(
         title=config.app_title,
         version=config.app_version,
+        lifespan=_lifespan,
     )
     app.add_middleware(
         CORSMiddleware,

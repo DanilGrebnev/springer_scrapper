@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException
-from src.interface.openai import OpenAIClient
+from src.agent.openai import OpenAIClient
 
 router = APIRouter(prefix="/api", tags=["ai-test"])
 

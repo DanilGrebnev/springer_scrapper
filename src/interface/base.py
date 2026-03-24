@@ -2,7 +2,10 @@ import json
 import re
 import logging
 from abc import ABC, abstractmethod
+from concurrent.futures import Future, as_completed
 from pathlib import Path
+
+from src.agent.ai_executor import get_ai_executor
 
 logger = logging.getLogger(__name__)
 
@@ -25,7 +28,7 @@ class AIClient(ABC):
     def _send_to_provider(self, system_prompt: str, articles_json: str) -> str:
         ...
 
-    def send_message(self, articles: dict, context: dict) -> dict:
+    def filter_article(self, articles: dict, context: dict) -> dict:
         articles_for_ai = []
         articles_by_id: dict[str, dict] = {}
 
@@ -44,9 +47,9 @@ class AIClient(ABC):
         prompt_template = PROMPT_PATH.read_text(encoding="utf-8")
         system_prompt = (
             prompt_template
-            .replace("{target_theme}", context.get("title", ""))
-            .replace("{target_context}", context.get("description", ""))
-            .replace("{more_context}", context.get("abstract_description", ""))
+            .replace("{field_knowledge}", context.get("field_knowledge", ""))
+            .replace("{target_theme}", context.get("target_theme", ""))
+            .replace("{target_context}", context.get("target_context", ""))
             .replace("{t_language}", context.get("language", "russian"))
         )
         logger.info("Системный промпт сформирован (%d символов)", len(system_prompt))
@@ -58,14 +61,33 @@ class AIClient(ABC):
 
         try:
             self.create_agent()
+            executor = get_ai_executor()
 
-            for idx, chunk in enumerate(chunks, 1):
-                logger.info("--- Чанк %d/%d (%d статей) ---", idx, len(chunks), len(chunk))
-                chunk_json = json.dumps(chunk, ensure_ascii=False)
-                raw = self._send_to_provider(system_prompt, chunk_json)
-                logger.info("Ответ чанка %d получен (%d символов)", idx, len(raw))
+            # Отправляем все чанки параллельно через общий пул.
+            # Сохраняем индекс, чтобы результаты мержились в порядке чанков.
+            index_to_future: dict[int, Future[str]] = {
+                idx: executor.submit(
+                    self._send_to_provider,
+                    system_prompt,
+                    json.dumps(chunk, ensure_ascii=False),
+                )
+                for idx, chunk in enumerate(chunks)
+            }
+            logger.info("Отправлено %d задач в AI executor", len(index_to_future))
 
-                parsed = self._parse_ai_response(raw)
+            results: dict[int, dict] = {}
+            for future in as_completed(index_to_future.values()):
+                idx = next(i for i, f in index_to_future.items() if f is future)
+                try:
+                    raw = future.result()
+                    logger.info("Ответ чанка %d получен (%d символов)", idx, len(raw))
+                    results[idx] = self._parse_ai_response(raw)
+                except Exception:
+                    logger.exception("Ошибка при обработке чанка %d, пропускаю", idx)
+                    results[idx] = {}
+
+            for idx in range(len(chunks)):
+                parsed = results.get(idx, {})
                 for key in MATCH_KEYS:
                     response[key].extend(parsed.get(key, []))
 
@@ -113,4 +135,6 @@ class AIClient(ABC):
                     "published": orig.get("published"),
                     "publications_type": orig.get("publications_type"),
                     "is_access": orig.get("is_access"),
+                    "publish_name": orig.get("publish_name"),
+                    "publish_link": orig.get("publish_link"),
                 }

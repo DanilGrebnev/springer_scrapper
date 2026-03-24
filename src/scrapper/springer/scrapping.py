@@ -27,7 +27,9 @@ ArticleCard = TypedDict("ArticleCard",
         "publications_type": str,
         "abstract": str,
         "authors": str,
-        "published": str
+        "published": str,
+        "publish_name": str,
+        "publish_link": str,
     })
 
 class ScrappingService:
@@ -91,20 +93,45 @@ class ScrappingService:
         
         return list(range(pages_amount[0], pages_amount[-1] + 1)) if len(pages_amount) > 1 else pages_amount 
 
-    def _collect_abstract(self, _driver, article_link: str) -> str:
-        '''Переходит на страницу статьи и извлекает текст abstract.
-        Возвращает пустую строку, если abstract не найден.'''
+    def _collect_article_detail(self, _driver, article_link: str) -> dict:
+        '''Переходит на страницу статьи и извлекает abstract, название источника и ссылку на него.
+        Возвращает словарь с ключами abstract, publish_name, publish_link.'''
+        result = {"abstract": "", "publish_name": "", "publish_link": ""}
         try:
             _driver.get(article_link)
             wait = WebDriverWait(_driver, 5, poll_frequency=1)
-            abstract_section = wait.until(
-                EC.presence_of_element_located((By.CSS_SELECTOR, "#Abs1-content"))
-            )
-            paragraphs = abstract_section.find_elements(By.TAG_NAME, "p")
-            return " ".join(p.text for p in paragraphs)
+
+            try:
+                abstract_section = wait.until(
+                    EC.presence_of_element_located((By.CSS_SELECTOR, "#Abs1-content"))
+                )
+                paragraphs = abstract_section.find_elements(By.TAG_NAME, "p")
+                result["abstract"] = " ".join(p.text for p in paragraphs)
+            except Exception as ex:
+                print(f"Ошибка сбора abstract для {article_link}: {ex}")
+
+            try:
+                el = _driver.find_element(By.CSS_SELECTOR, ".app-article-masthead__journal-title")
+                result["publish_name"] = el.text.strip()
+            except Exception:
+                pass
+
+            try:
+                el = _driver.find_element(
+                    By.CSS_SELECTOR,
+                    ".app-article-masthead__conference-link, .app-article-masthead__journal-link",
+                )
+                href = el.get_attribute("href") or ""
+                if href and not href.startswith("http"):
+                    href = "https://link.springer.com" + href
+                result["publish_link"] = href
+            except Exception:
+                pass
+
         except Exception as ex:
-            print(f"Ошибка сбора abstract для {article_link}: {ex}")
-            return ""
+            print(f"Ошибка при сборе деталей статьи {article_link}: {ex}")
+
+        return result
 
     # Сбор статей с 1 страницы
     def _collect_articles_list_from_page(self, _driver, page:int) -> list[ArticleCard]:
@@ -188,7 +215,10 @@ class ScrappingService:
         articles_list = [_get_articles(card_container, create_article_id(page, i)) for i, card_container in enumerate(card_containers_list)] 
         
         for article in articles_list:
-            article["abstract"] = self._collect_abstract(_driver, article["link"])
+            detail = self._collect_article_detail(_driver, article["link"])
+            article["abstract"] = detail["abstract"]
+            article["publish_name"] = detail["publish_name"]
+            article["publish_link"] = detail["publish_link"]
 
         return articles_list
         
