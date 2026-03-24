@@ -1,10 +1,29 @@
 import logging
+import os
 from contextlib import asynccontextmanager
+
+import fakeredis
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from src.config import config
+from fastapi_admin.app import app as admin_app
+from fastapi_admin.exceptions import (
+    forbidden_error_exception,
+    not_found_error_exception,
+    server_error_exception,
+    unauthorized_error_exception,
+)
+from starlette.status import (
+    HTTP_401_UNAUTHORIZED,
+    HTTP_403_FORBIDDEN,
+    HTTP_404_NOT_FOUND,
+    HTTP_500_INTERNAL_SERVER_ERROR,
+)
+from tortoise.contrib.fastapi import register_tortoise
+
 from src import routes
+from src.admin.provider import login_provider
 from src.agent.ai_executor import shutdown_ai_executor
+from src.config import config
 
 logging.basicConfig(
     level=logging.INFO,
@@ -12,9 +31,20 @@ logging.basicConfig(
     datefmt="%H:%M:%S",
 )
 
+_ADMIN_DB_URL = os.getenv("ADMIN_DB_URL", "sqlite://admin.db")
+_ADMIN_SECRET_KEY = os.getenv("ADMIN_SECRET_KEY", "changeme-replace-in-production")
+
 
 @asynccontextmanager
 async def _lifespan(app: FastAPI):
+    redis = fakeredis.FakeAsyncRedis(decode_responses=True)
+    await admin_app.configure(
+        logo_url="https://preview.tabler.io/static/logo-white.svg",
+        favicon_url="https://raw.githubusercontent.com/fastapi-admin/fastapi-admin/dev/images/favicon.png",
+        providers=[login_provider],
+        redis=redis,
+        secret_key=_ADMIN_SECRET_KEY,
+    )
     yield
     shutdown_ai_executor(wait=True)
 
@@ -32,9 +62,32 @@ def create_app() -> FastAPI:
         allow_methods=["*"],
         allow_headers=["*"],
     )
+
+    admin_app.add_exception_handler(HTTP_500_INTERNAL_SERVER_ERROR, server_error_exception)
+    admin_app.add_exception_handler(HTTP_404_NOT_FOUND, not_found_error_exception)
+    admin_app.add_exception_handler(HTTP_403_FORBIDDEN, forbidden_error_exception)
+    admin_app.add_exception_handler(HTTP_401_UNAUTHORIZED, unauthorized_error_exception)
+
+    app.mount("/admin", admin_app)
+
     app.include_router(routes.health.router)
     app.include_router(routes.article_search.router)
     app.include_router(routes.ai_test.router)
+
+    register_tortoise(
+        app,
+        config={
+            "connections": {"default": _ADMIN_DB_URL},
+            "apps": {
+                "models": {
+                    "models": ["src.admin.models"],
+                    "default_connection": "default",
+                }
+            },
+        },
+        generate_schemas=True,
+    )
+
     return app
 
 
