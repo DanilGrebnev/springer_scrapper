@@ -1,7 +1,14 @@
+import logging
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from src.config import config
 from src import routes
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
+    datefmt="%H:%M:%S",
+)
 
 
 def create_app() -> FastAPI:
@@ -18,6 +25,7 @@ def create_app() -> FastAPI:
     )
     app.include_router(routes.health.router)
     app.include_router(routes.article_search.router)
+    app.include_router(routes.ai_test.router)
     return app
 
 

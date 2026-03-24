@@ -1,3 +1,4 @@
+import logging
 from typing import TypedDict, Callable, Optional
 from src.scrapper.utils.create_url import create_url
 from src.scrapper.chrome_factory import ChromeFactory
@@ -9,6 +10,7 @@ import time
 from concurrent.futures import ThreadPoolExecutor
 import numpy as np
 
+logger = logging.getLogger(__name__)
 driver_factory = ChromeFactory()
 
 class PageInfo(TypedDict):
@@ -242,6 +244,7 @@ class ScrappingService:
         try:
             for i, page in enumerate(pages_range):
                 try:
+                    logger.info("[Поток] Открываю страницу %d ...", page)
                     self._get(
                         {**self._search_params, "page": page},
                         _driver=driver_local,
@@ -251,13 +254,14 @@ class ScrappingService:
                     self._scroll_slowly(_driver=driver_local)
                     
                     articles = self._collect_articles_list_from_page(_driver=driver_local, page=page)
+                    logger.info("[Поток] Страница %d: собрано %d статей", page, len(articles))
                     
                     result[page] = articles
                 except Exception as ex:
-                    print(f"Ошибка в сборе статей на странице {page}: {ex}")
+                    logger.error("Ошибка в сборе статей на странице %d: %s", page, ex)
                     continue
         except Exception as ex:
-            print(f'Parsing error: {ex}')
+            logger.error("Parsing error: %s", ex)
         finally:
             driver_local.quit()
 
@@ -350,25 +354,34 @@ class ScrappingService:
                 - Результаты всех потоков объединяются в единый словарь
                 - Ключи в результирующем словаре - строковые представления номеров страниц
             """
+        logger.info("--- Шаг 1: Определяем диапазон страниц ---")
         driver = driver_factory.create()
         pages_range = self._get_pages_range(driver)
         driver.quit()
+        logger.info("Найдено страниц: %d %s", len(pages_range), pages_range)
         
         divided_pages = self._divide_pages(pages_range, split=threads_amount)
         
         if not divided_pages:
-            print(f"Список страниц пустой")
+            logger.warning("Список страниц пустой — результатов нет")
             return None
+
+        logger.info("--- Шаг 2: Разбиваем на %d потока(ов) ---", len(divided_pages))
+        for i, chunk in enumerate(divided_pages):
+            logger.info("  Поток %d: страницы %s", i + 1, chunk)
         
         articles_result = {}
         
+        logger.info("--- Шаг 3: Запускаем многопоточный сбор ---")
         with ThreadPoolExecutor(max_workers=len(divided_pages)) as executor:
             futures = [executor.submit(self._scrapping_articles_from_all_pages, pages) for pages in divided_pages]
             
             for future in futures:
                articles_result.update(future.result())
+
+        logger.info("--- Шаг 4: Сбор завершён ---")
             
-        return  articles_result
+        return articles_result
         
     def start(self):
        return self._start_multythreads_scrapping()
