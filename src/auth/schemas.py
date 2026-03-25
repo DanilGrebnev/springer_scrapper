@@ -38,6 +38,9 @@ class LogoutIn(BaseModel):
     refresh_token: str
 
 
+from datetime import datetime as dt
+
+
 class ProfileOut(BaseModel):
     id: int
     name: str
@@ -45,4 +48,4 @@ class ProfileOut(BaseModel):
     username: str
     status: str
     balance: float
-    datetime: str
+    datetime: dt

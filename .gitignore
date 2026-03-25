@@ -13,9 +13,13 @@ venv
 # Environment
 .env
 
-# SQLite databases
+# SQLite databases (включая WAL/SHM)
 *.sqlite3
+*.sqlite3-wal
+*.sqlite3-shm
 *.db
+*.db-wal
+*.db-shm
 
 # Results
 results/

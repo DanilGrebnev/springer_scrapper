@@ -8,7 +8,7 @@ _executor: ThreadPoolExecutor | None = None
 
 # Все роуты, отправляющие запросы к ИИ, должны использовать этот же executor.
 # Не создавайте отдельный пул в каждом роуте — суммарный параллелизм контролируется здесь.
-_MAX_WORKERS = int(os.getenv("AI_MAX_WORKERS", "6"))
+_MAX_WORKERS = int(os.getenv("AI_MAX_WORKERS", "3"))
 
 
 def get_ai_executor() -> ThreadPoolExecutor:
