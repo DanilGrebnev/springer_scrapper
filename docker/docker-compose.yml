@@ -11,8 +11,12 @@ services:
     environment:
       # PostgreSQL для prod (переопределяет любое значение из .env)
       - DATABASE_URL=postgres://springer:springer@db:5432/springer
+      # Selenium Standalone Chrome внутри docker-сети
+      - SELENIUM_REMOTE_URL=http://selenium-chrome:4444
     depends_on:
       db:
+        condition: service_healthy
+      selenium-chrome:
         condition: service_healthy
     restart: unless-stopped
 
