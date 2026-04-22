@@ -17,7 +17,6 @@ dependencies = [
     # Admin panel
     "fastapi-admin>=1.0.4",
     "tortoise-orm>=0.21.0",
-    "aiosqlite>=0.20.0",
     # PostgreSQL async driver (used when DATABASE_URL points to postgres://)
     "asyncpg>=0.30.0",
     # Auth: JWT + password hashing
