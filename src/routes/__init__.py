@@ -1,1 +1,1 @@
-from src.routes import health, article_search, ai_test, auth
+from src.routes import health, article_search, ai_test, auth, pdf

@@ -78,6 +78,7 @@ def create_app() -> FastAPI:
     app.include_router(routes.auth.router)
     app.include_router(routes.article_search.router)
     app.include_router(routes.ai_test.router)
+    app.include_router(routes.pdf.router)
 
     register_tortoise(
         app,

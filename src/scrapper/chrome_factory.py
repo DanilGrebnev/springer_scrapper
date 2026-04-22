@@ -19,38 +19,40 @@ class ChromeFactory:
     def _build_options(self, headless: bool) -> Options:
         options = Options()
         options.set_capability("pageLoadStrategy", "eager")
+        # Современный способ скрыть автоматизацию, без устаревших experimental_option
+        # ("excludeSwitches" / "useAutomationExtension"), которые на Chrome 120+
+        # периодически вешают старт процесса (symptom: зависание на webdriver.Chrome()
+        # или "Chrome instance exited" без внятных логов).
+        options.add_argument("--disable-blink-features=AutomationControlled")
 
         if headless:
-            # Контейнерный headless-режим: минимум опций, максимум стабильности.
-            # experimental_option("excludeSwitches"/"useAutomationExtension") в новых
-            # Chrome 120+ на Linux приводит к "Chrome instance exited" на старте —
-            # не используем их в headless.
             options.add_argument("--headless=new")
             options.add_argument("--no-sandbox")
             options.add_argument("--disable-dev-shm-usage")
             options.add_argument("--disable-gpu")
             options.add_argument("--disable-extensions")
-            options.add_argument("--disable-blink-features=AutomationControlled")
             options.add_argument("--window-size=1920,1080")
             options.add_argument("--lang=en-US")
         else:
             options.add_argument("start-maximized")
-            options.add_experimental_option("excludeSwitches", ["enable-automation"])
-            options.add_experimental_option("useAutomationExtension", False)
 
         return options
 
-    def create(self):
-        headless = _is_truthy(os.getenv("CHROME_HEADLESS", ""))
+    def create(self, headless: bool | None = None):
+        """Создаёт webdriver.Chrome.
+
+        headless=None  — режим берётся из env CHROME_HEADLESS (по умолчанию).
+        headless=True  — принудительно headless (например, для рендера PDF,
+                         чтобы локально не всплывало окно браузера).
+        headless=False — принудительно GUI.
+        """
+        if headless is None:
+            headless = _is_truthy(os.getenv("CHROME_HEADLESS", ""))
         options = self._build_options(headless=headless)
 
         driver = webdriver.Chrome(options=options)
 
         if headless:
-            # selenium_stealth в комбинации с Chrome --headless=new
-            # иногда сам ломает контекст (часть подмен не применяется корректно).
-            # Для headless делаем лёгкий CDP-override навигатора — этого достаточно
-            # для обхода базовой детекции автоматизации.
             try:
                 driver.execute_cdp_cmd(
                     "Page.addScriptToEvaluateOnNewDocument",
