@@ -11,13 +11,14 @@ services:
     environment:
       # PostgreSQL для prod (переопределяет любое значение из .env)
       - DATABASE_URL=postgres://springer:springer@db:5432/springer
-      # Selenium Standalone Chrome внутри docker-сети
-      - SELENIUM_REMOTE_URL=http://selenium-chrome:4444
+      # Chrome внутри контейнера работает headless (без X-сервера)
+      - CHROME_HEADLESS=1
+    # /dev/shm в контейнере по умолчанию 64 МБ — Chrome этого мало,
+    # без увеличения он может крэшиться на тяжёлых страницах.
+    shm_size: 2gb
     depends_on:
       db:
         condition: service_healthy
-      selenium-chrome:
-        condition: service_started
     restart: unless-stopped
 
   db:
@@ -37,16 +38,6 @@ services:
       timeout: 5s
       retries: 10
     restart: unless-stopped
-
-  selenium-chrome:
-    image: selenium/standalone-chrome:latest
-    container_name: selenium-chrome
-    ports:
-      - "4444:4444"
-    shm_size: 2gb
-    environment:
-      - SE_NODE_MAX_SESSIONS=1
-      - SE_NODE_OVERRIDE_MAX_SESSIONS=true
 
 volumes:
   pg_data:
