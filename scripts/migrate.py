@@ -33,10 +33,27 @@ def _aerich(*args: str) -> subprocess.CompletedProcess[str]:
 def _has_migration_files() -> bool:
     if not os.path.isdir(MIGRATIONS_MODELS_DIR):
         return False
-    return any(
-        f.endswith(".py") and f != "__init__.py"
-        for f in os.listdir(MIGRATIONS_MODELS_DIR)
-    )
+
+    migration_files = [
+        f for f in os.listdir(MIGRATIONS_MODELS_DIR)
+        if f.endswith(".py") and f != "__init__.py"
+    ]
+    if not migration_files:
+        return False
+
+    for filename in migration_files:
+        migration_file_path = os.path.join(MIGRATIONS_MODELS_DIR, filename)
+        with open(migration_file_path, encoding="utf-8") as file:
+            content = file.read()
+        if "AUTOINCREMENT" in content:
+            logger.warning(
+                "SQLite-style migration detected (%s). "
+                "Will regenerate initial migration for PostgreSQL.",
+                filename,
+            )
+            return False
+
+    return True
 
 
 def _init_db() -> int:

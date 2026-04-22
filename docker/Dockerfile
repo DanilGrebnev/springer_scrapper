@@ -10,8 +10,9 @@ RUN pip install --no-cache-dir uv \
 
 COPY . .
 
-RUN chmod +x docker/entrypoint.sh
+RUN sed -i 's/\r$//' /app/docker/entrypoint.sh \
+    && chmod +x /app/docker/entrypoint.sh
 
 EXPOSE 8000
 
-ENTRYPOINT ["docker/entrypoint.sh"]
+ENTRYPOINT ["/bin/sh", "/app/docker/entrypoint.sh"]
