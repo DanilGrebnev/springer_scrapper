@@ -1,0 +1,45 @@
+# --- Python ---
+__pycache__/
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# --- Virtual environments ---
+.venv/
+**/.venv/
+venv/
+env/
+
+# --- IDE / OS ---
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# --- Git ---
+.git/
+.gitignore
+.gitattributes
+
+# --- Local databases & results ---
+db.sqlite3
+db.sqlite3-shm
+db.sqlite3-wal
+results/
+bin/
+
+# --- Migrations: генерируем внутри контейнера под Postgres ---
+migrations/
+
+# --- Docker-specific ---
+docker/docker-compose.yml
+
+# --- Env files (секреты подхватываются через env_file в compose) ---
+.env
+.env.*
+!.env.example
+
+# --- Misc ---
+*.log
+README.md
