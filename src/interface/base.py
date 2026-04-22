@@ -155,4 +155,5 @@ class AIClient(ABC):
                     "is_access": orig.get("is_access"),
                     "publish_name": orig.get("publish_name"),
                     "publish_link": orig.get("publish_link"),
+                    "citation": orig.get("citation"),
                 }

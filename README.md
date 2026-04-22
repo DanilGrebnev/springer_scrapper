@@ -83,6 +83,7 @@ flowchart TD
 | `published` | `str` | Дата публикации |
 | `publications_type` | `str` | Тип публикации (Article, Review и т.д.) |
 | `is_access` | `bool` | Наличие полного доступа |
+| `citation` | `str` | Человекочитаемая строка цитирования со страницы статьи |
 
 ### Компоненты
 

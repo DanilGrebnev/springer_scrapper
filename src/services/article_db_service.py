@@ -41,6 +41,7 @@ async def save_scraped_articles(articles: dict) -> dict[str, Article]:
                 open_access=bool(a.get("is_access", False)),
                 publish_name=a.get("publish_name", ""),
                 publish_link=a.get("publish_link", ""),
+                citation=a.get("citation", ""),
             )
             articles_map[scraper_id] = article
 
@@ -129,6 +130,7 @@ async def build_result_from_db(request_obj: Request) -> dict:
                     "is_access": article.open_access,
                     "publish_name": article.publish_name,
                     "publish_link": article.publish_link,
+                    "citation": article.citation,
                 },
             }
             level = match.level_match

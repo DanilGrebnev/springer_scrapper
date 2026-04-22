@@ -16,6 +16,7 @@ class Article(Model):
     open_access = fields.BooleanField(default=False)
     publish_name = fields.CharField(max_length=512, default="")
     publish_link = fields.CharField(max_length=2048, default="")
+    citation = fields.TextField(default="")
     datetime = fields.DatetimeField(default=datetime.datetime.now)
 
     class Meta:

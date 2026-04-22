@@ -30,6 +30,7 @@ ArticleCard = TypedDict("ArticleCard",
         "published": str,
         "publish_name": str,
         "publish_link": str,
+        "citation": str,
     })
 
 class ScrappingService:
@@ -96,7 +97,7 @@ class ScrappingService:
     def _collect_article_detail(self, _driver, article_link: str) -> dict:
         '''Переходит на страницу статьи и извлекает abstract, название источника и ссылку на него.
         Возвращает словарь с ключами abstract, publish_name, publish_link.'''
-        result = {"abstract": "", "publish_name": "", "publish_link": ""}
+        result = {"abstract": "", "publish_name": "", "publish_link": "", "citation": ""}
         try:
             _driver.get(article_link)
             wait = WebDriverWait(_driver, 5, poll_frequency=1)
@@ -109,6 +110,15 @@ class ScrappingService:
                 result["abstract"] = " ".join(p.text for p in paragraphs)
             except Exception as ex:
                 print(f"Ошибка сбора abstract для {article_link}: {ex}")
+
+            try:
+                el = _driver.find_element(
+                    By.CSS_SELECTOR, ".c-bibliographic-information__citation"
+                )
+                raw = el.text or ""
+                result["citation"] = " ".join(raw.split()).strip()
+            except Exception:
+                pass
 
             try:
                 el = _driver.find_element(By.CSS_SELECTOR, ".app-article-masthead__journal-title")
@@ -200,6 +210,9 @@ class ScrappingService:
                 "link":link,
                 "description":description,
                 "abstract":"",
+                "publish_name":"",
+                "publish_link":"",
+                "citation":"",
                 **meta_info_result
             }
 
@@ -219,6 +232,7 @@ class ScrappingService:
             article["abstract"] = detail["abstract"]
             article["publish_name"] = detail["publish_name"]
             article["publish_link"] = detail["publish_link"]
+            article["citation"] = detail["citation"]
 
         return articles_list
         
