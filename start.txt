@@ -1,0 +1,5 @@
+Запуск проекта
+
+uv sync - установка зависимостей делается из папки requirements
+
+uv run --project requirements python main.py
