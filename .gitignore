@@ -23,3 +23,7 @@ venv
 
 # Results
 results/
+
+# Auto-generated database migrations (генерируются под текущую БД при старте)
+migrations/models/*.py
+!migrations/models/__init__.py
